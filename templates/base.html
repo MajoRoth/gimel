@@ -1,10 +1,100 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <title> Shevet Gimel </title>
+      <!-- MDB icon -->
+      <link rel="icon" href="./img/logoboi.jpg" type="image/x-icon">
+      <!-- Font Awesome -->
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+      <!-- Google Fonts Roboto -->
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+      <!-- Bootstrap core CSS -->
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+
+      <!-- Material Design Bootstrap -->
+      <link rel="stylesheet" href="css/mdb.min.css">
+      <!-- Your custom styles (optional) -->
+      <link rel="stylesheet" href="{% static 'css/master.css' %}">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    {% block head %}
+
+    {% endblock %}
 </head>
 <body>
+    <!--Navbar -->
+    <nav class="mb-1 navbar navbar-expand-lg navbar-dark bronze">
+      <a class="navbar-brand" href="#">
+        <img src="{% static 'images/logo.jpeg' %}" alt="">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+        aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+        <ul class="navbar-nav mr-auto w-100">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">עמוד בית
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+             <li class="nav-item">
+            <a class="nav-link" href="../News/templates/News/news.html">חדשות</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">תמונות</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+          <li class="nav-item">
+            <a class="nav-link waves-effect waves-light">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect waves-light">
+              <i class="fab fa-google-plus-g"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect waves-light">
+              <i class="fa fa-github"></i>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-user"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right dropdown-default"
+              aria-labelledby="navbarDropdownMenuLink-333">
+              <a class="dropdown-item" href="#">הודעות</a>
+              <a class="dropdown-item" href="#">הזמנות</a>
+              <a class="dropdown-item" href="#">מידע אישי</a>
+              <a class="dropdown-item" href="#">יציאה</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!--/.Navbar -->
+
+
+  </div>
+  <!-- Collapsible content -->
+
+</nav>
+<!--/.Navbar-->
+
+
+
+    {% block content %}
+
+    {% endblock %}
 
 </body>
 </html>

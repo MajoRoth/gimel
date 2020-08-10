@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>LOGIN PAGE</h1>
+
+    <div><form method="POST", action="{% url 'login' %}">
+        {% csrf_token %}
+        {{ form.username.label_tag }}
+        {{ form.username }}
+
+        {{ form.password.label_tag }}
+        {{ form.password }}
+
+        <label>Password: </label>
+        <input type="password">
+
+        <input type="submit" value="Login">
+    </form></div>
+
+{% endblock %}

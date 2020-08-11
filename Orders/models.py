@@ -1,27 +1,24 @@
 from django.db import models
-from Accounts.models import User
+from django.contrib.auth.models import User
 from django.urls import reverse
 
 
 # Create your models here.
-
-
 class Worder(models.Model):
     # An order from warehouse !!!
-    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now=True)
     description = models.TextField()
     date = models.DateTimeField()
     Approved = models.BooleanField(default=False)
-    Active = models.BooleanField(default=True) # instead of deleting - set false
+    Active = models.BooleanField(default=True)  # instead of deleting - set false
+
 
     def approve(self):
         self.Approved = True
 
-    def __str__(self):
-        return self.user.get_username() + "\n" + self.description
-
     def get_absolute_url(self):
+        # We will change to the list view once created
         return reverse('home')
 
 
@@ -37,11 +34,9 @@ class Torder(models.Model):
     def approve(self):
         self.Approved = True
 
-    def __str__(self):
-        return self.user.get_username() + "\n" + self.description
-
     def get_absolute_url(self):
-        return reverse('Torder.views.details', args=[str(self.id)])
+        # We will change to the list view once created
+        return reverse('home')
 
 
 class Aorder(models.Model):
@@ -66,12 +61,9 @@ class Aorder(models.Model):
     def approve(self):
         self.Approved = True
 
-    def __str__(self):
-        return self.user.get_username() + "\n" + self.area
-
     def get_absolute_url(self):
-        return reverse('Aorder.views.details', args=[str(self.id)])
-
+        # We will change to the list view once created
+        return reverse('home')
 
 
 

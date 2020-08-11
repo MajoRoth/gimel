@@ -1,0 +1,23 @@
+{% extends "index.html" %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+
+            </div>
+            <div class="col">
+            <h1>Your Orders:</h1>
+                <!-- Temporary -->
+                {% for order in orders %}
+                    <div>
+                        <h1>{{ order.description  }}</h1>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

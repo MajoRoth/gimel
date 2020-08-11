@@ -2,7 +2,7 @@ from django.contrib import admin
 from Orders.models import Worder, Torder, Aorder
 # Register your models here.
 
-admin.register(Worder)
-admin.register(Torder)
-admin.register(Aorder)
+admin.site.register(Worder)
+admin.site.register(Torder)
+admin.site.register(Aorder)
 

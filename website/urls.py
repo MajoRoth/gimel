@@ -19,7 +19,7 @@ from website.views import HomePage
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', HomePage.as_view(), name = 'home'),
+    path('', HomePage.as_view(), name='home'),
     path('accounts/', include('Accounts.urls')),
-    #path('orders/', include('Orders.urls')),
+    path('orders/', include('Orders.urls')),
 ]

@@ -8,11 +8,11 @@ from django.urls import reverse
 
 class Worder(models.Model):
     # An order from warehouse !!!
-    user = models.ForeignKey(User, on_delete=models.SET_NULL)
+    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     created_at = models.DateTimeField(auto_now=True)
     description = models.TextField()
     date = models.DateTimeField()
-    Approved = models.BooleanField()
+    Approved = models.BooleanField(default=False)
     Active = models.BooleanField(default=True) # instead of deleting - set false
 
     def approve(self):
@@ -22,16 +22,16 @@ class Worder(models.Model):
         return self.user.get_username() + "\n" + self.description
 
     def get_absolute_url(self):
-        return reverse('Worder.views.details', args=[str(self.id)])
+        return reverse('home')
 
 
 class Torder(models.Model):
     # An order from tahzooka !!!
-    user = models.ForeignKey(User, on_delete=models.SET_NULL)
+    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     created_at = models.DateTimeField(auto_now=True)
     description = models.TextField()
     date = models.DateTimeField()
-    Approved = models.BooleanField()
+    Approved = models.BooleanField(default=False)
     Active = models.BooleanField(default=True) # instead of deleting - set false
 
     def approve(self):
@@ -52,7 +52,7 @@ class Aorder(models.Model):
         ('WO', 'חורשה'), # Woods
     ]
     # An area order !!!
-    user = models.ForeignKey(User, on_delete=models.SET_NULL)
+    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     created_at = models.DateTimeField(auto_now=True)
     area = models.CharField(
         max_length=2,
@@ -60,7 +60,7 @@ class Aorder(models.Model):
         default='CO')
 
     date = models.DateTimeField()
-    Approved = models.BooleanField()
+    Approved = models.BooleanField(default=False)
     Active = models.BooleanField(default=True) # instead of deleting - set false
 
     def approve(self):

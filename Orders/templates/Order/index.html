@@ -1,40 +1,112 @@
 {% extends "index.html" %}
+{% load static %}
 
 {% block head %}
+    <link rel="stylesheet" href="{% static 'css/Orders/style.css' %}">
 {% endblock %}
 
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col-6">
-                <div class="jumbotron"> CREATE MODELS HERE </div>
-            </div>
-            <div class="col-6">
-            <h2>הזמנות מחסן:</h2>
+            <div class="col-4">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <h3>הזמנות מחסן</h3>
+                    </li>
                 <!-- Temporary -->
                 {% for order in Worders %}
-                    <div style="border: gray 1px solid">
-                        <h3>{{ order.description  }}</h3>
+                    {% if order.Approved %}
+                    <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-8">
+                            <h5>{{ order.date  }}</h5><h6> {{ order.description }}</h6>
+                        </div>
+                        <div class="col-4">
+                            <button type="button" disabled class="btn btn-outline-success">מאושר</button>
+                        </div>
                     </div>
+                    </li>
+                    {% else %}
+                        <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-8">
+                            <h5>{{ order.date  }}</h5><h6> {{ order.description }}</h6>
+                        </div>
+                        <div class="col-4">
+                            <button type="button" disabled class="btn btn-outline-danger">לא מאושר</button>
+                        </div>
+                    </div>
+                    </li>
+                    {% endif %}
                 {% endfor %}
-
-            <h1>הזמנות תחזוקה:</h1>
+                </ul>
+            </div>
+        <div class="col-4">
+            <ul class="list-group">
+                    <li class="list-group-item">
+                        <h3>הזמנות תחזוקה</h3>
+                    </li>
                 <!-- Temporary -->
                 {% for order in Torders %}
-                    <div style="border: gray 1px solid">
-                        <h3>{{ order.description  }}</h3>
+                    {% if order.Approved %}
+                    <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-8">
+                            <h5>{{ order.date  }}</h5><h6> {{ order.description }}</h6>
+                        </div>
+                        <div class="col-4">
+                            <button type="button" disabled class="btn btn-outline-success">מאושר</button>
+                        </div>
                     </div>
+                    </li>
+                    {% else %}
+                        <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-8">
+                            <h5>{{ order.date  }}</h5><h6> {{ order.description }}</h6>
+                        </div>
+                        <div class="col-4">
+                            <button type="button" disabled class="btn btn-outline-danger">לא מאושר</button>
+                        </div>
+                    </div>
+                    </li>
+                    {% endif %}
                 {% endfor %}
-
-            <h1>הזמנות שטח:</h1>
+                </ul>
+        </div>
+        <div class="col-4">
+            <ul class="list-group">
+                    <li class="list-group-item">
+                        <h3>הזמנות שטח</h3>
+                    </li>
                 <!-- Temporary -->
                 {% for order in Aorders %}
-                    <div style="border: gray 1px solid">
-                        <h3>{{ order.area  }}</h3>
+                    {% if order.Approved %}
+                    <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-8">
+                            <h5>{{ order.date  }}</h5><h6> {{ order.area }}</h6>
+                        </div>
+                        <div class="col-4">
+                            <button type="button" disabled class="btn btn-outline-success">מאושר</button>
+                        </div>
                     </div>
+                    </li>
+                    {% else %}
+                        <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-8">
+                            <h5>{{ order.date  }}</h5><h6> {{ order.area }}</h6>
+                        </div>
+                        <div class="col-4">
+                            <button type="button" disabled class="btn btn-outline-danger">לא מאושר</button>
+                        </div>
+                    </div>
+                    </li>
+                    {% endif %}
                 {% endfor %}
-            </div>
+                </ul>
         </div>
-
+        </div>
     </div>
 {% endblock %}

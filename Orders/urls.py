@@ -1,7 +1,7 @@
 from django.urls import path, include
 from Orders import views
 
-app_name = 'Order'
+app_name = 'Orders'
 
 urlpatterns = [
     path('wcreate/', views.WorderCreateView.as_view(), name='CreateWorder'),

@@ -9,10 +9,9 @@ class Worder(models.Model):
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now=True)
     description = models.TextField()
-    date = models.DateTimeField()
+    date = models.DateField()
     Approved = models.BooleanField(default=False)
     Active = models.BooleanField(default=True)  # instead of deleting - set false
-
 
     def approve(self):
         self.Approved = True
@@ -27,7 +26,7 @@ class Torder(models.Model):
     user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     created_at = models.DateTimeField(auto_now=True)
     description = models.TextField()
-    date = models.DateTimeField()
+    date = models.DateField()
     Approved = models.BooleanField(default=False)
     Active = models.BooleanField(default=True) # instead of deleting - set false
 
@@ -54,7 +53,7 @@ class Aorder(models.Model):
         choices=ListOfAreas,
         default='CO')
 
-    date = models.DateTimeField()
+    date = models.DateField()
     Approved = models.BooleanField(default=False)
     Active = models.BooleanField(default=True) # instead of deleting - set false
 

@@ -6,18 +6,35 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col">
-
+            <div class="col-6">
+                <div class="jumbotron"> CREATE MODELS HERE </div>
             </div>
-            <div class="col">
-            <h1>Your Orders:</h1>
+            <div class="col-6">
+            <h2>הזמנות מחסן:</h2>
                 <!-- Temporary -->
-                {% for order in orders %}
-                    <div>
-                        <h1>{{ order.description  }}</h1>
+                {% for order in Worders %}
+                    <div style="border: gray 1px solid">
+                        <h3>{{ order.description  }}</h3>
+                    </div>
+                {% endfor %}
+
+            <h1>הזמנות תחזוקה:</h1>
+                <!-- Temporary -->
+                {% for order in Torders %}
+                    <div style="border: gray 1px solid">
+                        <h3>{{ order.description  }}</h3>
+                    </div>
+                {% endfor %}
+
+            <h1>הזמנות שטח:</h1>
+                <!-- Temporary -->
+                {% for order in Aorders %}
+                    <div style="border: gray 1px solid">
+                        <h3>{{ order.area  }}</h3>
                     </div>
                 {% endfor %}
             </div>
         </div>
+
     </div>
 {% endblock %}

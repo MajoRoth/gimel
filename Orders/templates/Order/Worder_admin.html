@@ -1,0 +1,62 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/Orders/style.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <ul class="list-group">
+                    <li class="list-group-item" style="text-align: center">
+                        <button type="submit" disabled class="btn btn-outline-danger">הזמנות לא מאושרות</button>
+                    </li>
+                <!-- Temporary -->
+                {% for order in Worders %}
+                    {% if order.Approved %}
+                    <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-8">
+                            <h5>{{ order.date }}</h5><h6> {{ order.description }}</h6>
+                        </div>
+                        <div class="col-4">
+                            <form action="/orders/worderadmin_approve/{{ order.pk }}/", method="POST">
+                                <button type="submit" class="btn btn-outline-success">אשר</button>
+                            </form>
+                        </div>
+                    </div>
+                    </li>
+                {% endif %}
+                {% endfor %}
+                </ul>
+            </div>
+        <div class="col-6">
+                <ul class="list-group">
+                    <li class="list-group-item" style="text-align: center">
+                        <button type="submit" disabled class="btn btn-outline-success">הזמנות מאושרות</button>
+                    </li>
+                <!-- Temporary -->
+                {% for order in Worders %}
+                    {% if not order.Approved %}
+                    <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-8">
+                            <h5>{{ order.date }}</h5><h6> {{ order.description }}</h6>
+                        </div>
+                        <div class="col-4">
+                            <button type="button" disabled class="btn btn-outline-success">מאושר</button>
+                        </div>
+                    </div>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

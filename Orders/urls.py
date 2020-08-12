@@ -8,5 +8,7 @@ urlpatterns = [
     path('tcreate/', views.TorderCreateView.as_view(), name='CreateTorder'),
     path('acreate/', views.AorderCreateView.as_view(), name='CreateAorder'),
     path('', views.OrderIndexView.as_view(), name='index'),
+    path('worderadmin/', views.WorderAdmin.as_view(), name='worderadmin'),
+    path('worderadmin_approve/<int:pk>/', views.approveOrder, name='ApproveWorder')
 
 ]

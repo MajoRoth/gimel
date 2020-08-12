@@ -10,8 +10,11 @@
         <div class="row">
             <div class="col-4">
                 <ul class="list-group">
-                    <li class="list-group-item">
+                    <li class="list-group-item" style="text-align: center">
                         <h3>הזמנות מחסן</h3>
+                        <form method="get" action="{% url 'Orders:CreateWorder' %}">
+                            <button type="submit" class="btn btn-outline-dark">הזמנה חדשה</button>
+                        </form>
                     </li>
                 <!-- Temporary -->
                 {% for order in Worders %}
@@ -19,7 +22,7 @@
                     <li class="list-group-item">
                     <div class="row">
                         <div class="col-8">
-                            <h5>{{ order.date  }}</h5><h6> {{ order.description }}</h6>
+                            <h5>{{ order.date }}</h5><h6> {{ order.description }}</h6>
                         </div>
                         <div class="col-4">
                             <button type="button" disabled class="btn btn-outline-success">מאושר</button>
@@ -43,8 +46,11 @@
             </div>
         <div class="col-4">
             <ul class="list-group">
-                    <li class="list-group-item">
+                    <li class="list-group-item" style="text-align: center">
                         <h3>הזמנות תחזוקה</h3>
+                        <form method="get" action="{% url 'Orders:CreateTorder' %}">
+                            <button type="submit" class="btn btn-outline-dark">הזמנה חדשה</button>
+                        </form>
                     </li>
                 <!-- Temporary -->
                 {% for order in Torders %}
@@ -76,8 +82,11 @@
         </div>
         <div class="col-4">
             <ul class="list-group">
-                    <li class="list-group-item">
+                    <li class="list-group-item" style="text-align: center">
                         <h3>הזמנות שטח</h3>
+                        <form method="get" action="{% url 'Orders:CreateAorder' %}">
+                            <button type="submit" class="btn btn-outline-dark">הזמנה חדשה</button>
+                        </form>
                     </li>
                 <!-- Temporary -->
                 {% for order in Aorders %}

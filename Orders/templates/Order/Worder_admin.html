@@ -24,7 +24,8 @@
                         </div>
                         <div class="col-4">
                             <form action="/orders/worderadmin_approve/{{ order.pk }}/", method="POST">
-                                <button type="submit" class="btn btn-outline-success">אשר</button>
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-success">אשר, {{ order.pk }}</button>
                             </form>
                         </div>
                     </div>

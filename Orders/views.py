@@ -56,9 +56,8 @@ class WorderAdmin(TemplateView):
         return context
 
 
-def approveOrder(request, worderpk):
-    order = Worder.objects.get(pk=worderpk)
-    order.approve()
+def approveOrder(request, **kwargs):
+    Worder.approve(self=Worder.objects.get(id=kwargs['pk']))
     return WorderAdmin
 
 

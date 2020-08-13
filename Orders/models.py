@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.utils import timezone
 
 
 # Create your models here.
@@ -9,7 +10,7 @@ class Worder(models.Model):
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now=True)
     description = models.TextField()
-    date = models.DateField()
+    date = models.DateField(default=timezone.now())
     Approved = models.BooleanField(default=False)
     Active = models.BooleanField(default=True)  # instead of deleting - set false
 
@@ -31,7 +32,7 @@ class Torder(models.Model):
     user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     created_at = models.DateTimeField(auto_now=True)
     description = models.TextField()
-    date = models.DateField()
+    date = models.DateField(default=timezone.now())
     Approved = models.BooleanField(default=False)
     Active = models.BooleanField(default=True) # instead of deleting - set false
 
@@ -63,7 +64,7 @@ class Aorder(models.Model):
         choices=ListOfAreas,
         default='CO')
 
-    date = models.DateField()
+    date = models.DateField(default=timezone.now())
     Approved = models.BooleanField(default=False)
     Active = models.BooleanField(default=True) # instead of deleting - set false
 

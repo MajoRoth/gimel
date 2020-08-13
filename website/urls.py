@@ -22,4 +22,5 @@ urlpatterns = [
     path('', HomePage.as_view(), name='home'),
     path('accounts/', include('Accounts.urls')),
     path('orders/', include('Orders.urls')),
+    path('news/', include('News.urls')),
 ]

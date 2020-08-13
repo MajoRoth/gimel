@@ -1,16 +1,22 @@
 {% extends 'base.html' %}
-
+{% load static %}
+{% load bootstrap3 %}
 {% block head %}
+    <link rel="stylesheet" href="{% static 'css/Orders/style.css' %}">
 {% endblock %}
 
 {% block content %}
-
-    <h1>Worder Create:</h1>
-
-    <form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" class="btn btn-primary" value="Submit">
-    </form>
+    <div class="container">
+        <div class="row">
+            <h1 id="Wheadline">הזמנה ממחסן</h1>
+        </div>
+            <div class="row">
+            <form method="POST">
+            {% csrf_token %}
+                {% bootstrap_form form show_label=False %}
+            <input type="submit" class="btn btn-primary" value="Submit">
+            </form>
+        </div>
+    </div>
 
 {% endblock %}

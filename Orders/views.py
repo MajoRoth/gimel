@@ -1,8 +1,8 @@
-from django import forms
-from django.views.generic import CreateView, TemplateView, View
+from django.views.generic import CreateView, TemplateView
 from Orders.models import Worder, Aorder, Torder
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from Orders import forms
 
 
 
@@ -21,7 +21,7 @@ class OrderIndexView(TemplateView):
 
 
 class WorderCreateView(CreateView):
-    fields = ('description', 'date')
+    form_class = forms.WorderFrom
     model = Worder
     template_name = 'Order/worder_form.html'
 
@@ -32,7 +32,7 @@ class WorderCreateView(CreateView):
 
 class TorderCreateView(CreateView):
     template_name = 'Order/torder_form.html'
-    fields = ('description', 'date')
+    form_class = forms.TorderFrom
     model = Torder
 
     def form_valid(self, form):
@@ -42,7 +42,7 @@ class TorderCreateView(CreateView):
 
 class AorderCreateView(CreateView):
     template_name = 'Order/aorder_form.html'
-    fields = ('area', 'date')
+    form_class = forms.AorderFrom
     model = Aorder
 
     def form_valid(self, form):

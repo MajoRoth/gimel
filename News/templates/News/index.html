@@ -1,27 +1,11 @@
-<!DOCTYPE html>
-<html lang="he" dir="rtl">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title> צופים   </title>
-  <!-- MDB icon -->
-  <link rel="icon" href="./img/logoboi.jpg" type="image/x-icon">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-  <!-- Google Fonts Roboto -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="css/bootstrap.min.css">
+{% extends "index.html" %}
+{% load static %}
 
-  <!-- Material Design Bootstrap -->
-  <link rel="stylesheet" href="css/mdb.min.css">
-  <!-- Your custom styles (optional) -->
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
+{% block head %}
 
-<body>
+{% endblock %}
+
+{% block content %}
 
   <!--Main Navigation-->
 <header>
@@ -128,5 +112,5 @@
   <!-- Your custom scripts (optional) -->
   <script type="text/javascript"></script>
 
-</body>
-</html>
+
+{% endblock %}

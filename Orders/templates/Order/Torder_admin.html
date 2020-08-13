@@ -9,7 +9,7 @@
 
     <div class="container">
         <div class="row">
-            <h1 id="Wheadline">מחסן</h1>
+            <h1 id="Theadline">תחזוקה</h1>
         </div>
         <div class="row">
             <div class="col-6">
@@ -18,7 +18,7 @@
                         <button type="submit" disabled class="btn btn-outline-danger">הזמנות לא מאושרות</button>
                     </li>
                 <!-- Temporary -->
-                {% for order in Worders %}
+                {% for order in Torders %}
                     {% if not order.Approved %}
                     <li class="list-group-item">
                     <div class="row">
@@ -26,7 +26,7 @@
                             <h5>{{ order.date }}</h5><h6> {{ order.description }}</h6>
                         </div>
                         <div class="col-4">
-                            <form action="/orders/worderadmin_approve/{{ order.pk }}/", method="POST">
+                            <form action="/orders/torderadmin_approve/{{ order.pk }}/", method="POST">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-outline-success">אשר</button>
                             </form>
@@ -43,7 +43,7 @@
                         <button type="submit" disabled class="btn btn-outline-success">הזמנות מאושרות</button>
                     </li>
                 <!-- Temporary -->
-                {% for order in Worders %}
+                {% for order in Torders %}
                     {% if order.Approved %}
                     <li class="list-group-item">
                     <div class="row">
@@ -51,7 +51,7 @@
                             <h5>{{ order.date }}</h5><h6> {{ order.description }}</h6>
                         </div>
                         <div class="col-4">
-                            <form action="/orders/worderadmin_disapprove/{{ order.pk }}/", method="POST">
+                            <form action="/orders/torderadmin_disapprove/{{ order.pk }}/", method="POST">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-outline-danger">בטל אישור</button>
                             </form>

@@ -15,6 +15,11 @@ class Worder(models.Model):
 
     def approve(self):
         self.Approved = True
+        self.save()
+
+    def disapprove(self):
+        self.Approved = False
+        self.save()
 
     def get_absolute_url(self):
         # We will change to the list view once created
@@ -32,6 +37,11 @@ class Torder(models.Model):
 
     def approve(self):
         self.Approved = True
+        self.save()
+
+    def disapprove(self):
+        self.Approved = False
+        self.save()
 
     def get_absolute_url(self):
         # We will change to the list view once created
@@ -59,6 +69,11 @@ class Aorder(models.Model):
 
     def approve(self):
         self.Approved = True
+        self.save()
+
+    def disapprove(self):
+        self.Approved = False
+        self.save()
 
     def get_absolute_url(self):
         # We will change to the list view once created

@@ -1,6 +1,9 @@
 from django import forms
-from django.views.generic import CreateView, TemplateView
+from django.views.generic import CreateView, TemplateView, View
 from Orders.models import Worder, Aorder, Torder
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+
 
 
 # Create your views here.
@@ -55,10 +58,64 @@ class WorderAdmin(TemplateView):
         context['Worders'] = Worder.objects.all()
         return context
 
+class TorderAdmin(TemplateView):
+    template_name = 'Order/Torder_admin.html'
 
-def approveOrder(request, **kwargs):
-    Worder.approve(self=Worder.objects.get(id=kwargs['pk']))
-    return WorderAdmin
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['Torders'] = Torder.objects.all()
+        return context
+
+class AorderAdmin(TemplateView):
+    template_name = 'Order/Aorder_admin.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['Aorders'] = Aorder.objects.all()
+        return context
+
+
+"""
+    Approval methods - function views:
+"""
+
+
+def approveWorder(request, order_pk):
+    order = Worder.objects.get(pk=order_pk)
+    order.approve()
+    return HttpResponseRedirect(reverse('Orders:worderadmin'))
+
+
+def disapproveWorder(request, order_pk):
+    order = Worder.objects.get(pk=order_pk)
+    order.disapprove()
+    return HttpResponseRedirect(reverse('Orders:worderadmin'))
+
+
+def approveTorder(request, order_pk):
+    order = Torder.objects.get(pk=order_pk)
+    order.approve()
+    return HttpResponseRedirect(reverse('Orders:torderadmin'))
+
+
+def disapproveTorder(request, order_pk):
+    order = Torder.objects.get(pk=order_pk)
+    order.disapprove()
+    return HttpResponseRedirect(reverse('Orders:torderadmin'))
+
+
+def approveAorder(request, order_pk):
+    order = Aorder.objects.get(pk=order_pk)
+    order.approve()
+    return HttpResponseRedirect(reverse('Orders:aorderadmin'))
+
+
+def disapproveAorder(request, order_pk):
+    order = Aorder.objects.get(pk=order_pk)
+    order.disapprove()
+    return HttpResponseRedirect(reverse('Orders:aorderadmin'))
+
+
 
 
 

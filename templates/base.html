@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load auth_extras %}
 {% load static %}
 <html lang="en" dir="rtl">
 <head>
@@ -39,7 +40,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
         <ul class="navbar-nav mr-auto w-100">
           <li class="nav-item active">
-            <a class="nav-link" href="index.html">עמוד בית
+            <a class="nav-link" href="{% url 'home' %}">עמוד בית
               <span class="sr-only">(current)</span>
             </a>
           </li>
@@ -52,45 +53,33 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'Orders:index' %}">הזמנות</a>
           </li>
+            {% if request.user|has_group:"Warehouse" %}
             <li class="nav-item">
             <a class="nav-link" href="{% url 'Orders:worderadmin' %}">הזמנות מחסן</a>
           </li>
+            {% endif %}
+            {% if request.user|has_group:"System" %}
             <li class="nav-item">
             <a class="nav-link" href="{% url 'Orders:torderadmin' %}">הזמנות תחזוקה</a>
           </li>
+            {% endif %}
+            {% if request.user|has_group:"Areas" %}
             <li class="nav-item">
             <a class="nav-link" href="{% url 'Orders:aorderadmin' %}">הזמנות שטח</a>
           </li>
+            {% endif %}
+
         </ul>
         <ul class="navbar-nav ml-auto nav-flex-icons">
-          <li class="nav-item">
-            <a class="nav-link waves-effect waves-light">
-              <i class="fab fa-twitter"></i>
-            </a>
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+            <a class="nav-link" href="{% url 'Accounts:logout' %}">התנתק </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link waves-effect waves-light">
-              <i class="fab fa-google-plus-g"></i>
-            </a>
+            {% else %}
+            <li class="nav-item">
+            <a class="nav-link" href="{% url 'Accounts:login' %}">התחבר </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link waves-effect waves-light">
-              <i class="fa fa-github"></i>
-            </a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              <i class="fas fa-user"></i>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right dropdown-default"
-              aria-labelledby="navbarDropdownMenuLink-333">
-              <a class="dropdown-item" href="#">הודעות</a>
-              <a class="dropdown-item" href="#">הזמנות</a>
-              <a class="dropdown-item" href="#">מידע אישי</a>
-              <a class="dropdown-item" href="#">יציאה</a>
-            </div>
-          </li>
+            {% endif %}
         </ul>
       </div>
     </nav>

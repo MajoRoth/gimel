@@ -1,21 +1,17 @@
 {% extends 'base.html' %}
-
+{% load bootstrap3 %}
 {% block content %}
-
-    <h1>LOGIN PAGE</h1>
-
-    <div><form method="POST", action="{% url 'login' %}">
-        {% csrf_token %}
-        {{ form.username.label_tag }}
-        {{ form.username }}
-
-        {{ form.password.label_tag }}
-        {{ form.password }}
-
-        <label>Password: </label>
-        <input type="password">
-
-        <input type="submit" value="Login">
-    </form></div>
+    <div class="container">
+        <div class="row">
+            <h1>התחבר</h1>
+        </div>
+        <form method="POST" action="{% url 'Accounts:login' %}">
+            {% csrf_token %}
+            <div class="row">
+                {%  bootstrap_form form %}
+            </div>
+            <input type="submit" value="Login">
+        </form>
+    </div>
 
 {% endblock %}

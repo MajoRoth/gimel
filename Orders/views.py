@@ -3,13 +3,15 @@ from Orders.models import Worder, Aorder, Torder
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from Orders import forms
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
+from django.contrib.auth.decorators import permission_required
 
 
 
 # Create your views here.
-
-
-class OrderIndexView(TemplateView):
+class OrderIndexView(LoginRequiredMixin, TemplateView):
+    login_url = '/accounts/login/'
+    redirect_field_name = 'redirect_to'
     template_name = 'Order/index.html'
 
     def get_context_data(self, **kwargs):
@@ -20,7 +22,9 @@ class OrderIndexView(TemplateView):
         return context
 
 
-class WorderCreateView(CreateView):
+class WorderCreateView(LoginRequiredMixin, CreateView):
+    login_url = '/accounts/login/'
+    redirect_field_name = 'redirect_to'
     form_class = forms.WorderFrom
     model = Worder
     template_name = 'Order/worder_form.html'
@@ -30,7 +34,9 @@ class WorderCreateView(CreateView):
         return super().form_valid(form)
 
 
-class TorderCreateView(CreateView):
+class TorderCreateView(LoginRequiredMixin, CreateView):
+    login_url = '/accounts/login/'
+    redirect_field_name = 'redirect_to'
     template_name = 'Order/torder_form.html'
     form_class = forms.TorderFrom
     model = Torder
@@ -40,7 +46,9 @@ class TorderCreateView(CreateView):
         return super().form_valid(form)
 
 
-class AorderCreateView(CreateView):
+class AorderCreateView(LoginRequiredMixin, CreateView):
+    login_url = '/accounts/login/'
+    redirect_field_name = 'redirect_to'
     template_name = 'Order/aorder_form.html'
     form_class = forms.AorderFrom
     model = Aorder
@@ -50,7 +58,8 @@ class AorderCreateView(CreateView):
         return super().form_valid(form)
 
 
-class WorderAdmin(TemplateView):
+class WorderAdmin(PermissionRequiredMixin, TemplateView):
+    permission_required = 'Orders.view_worder'
     template_name = 'Order/Worder_admin.html'
 
     def get_context_data(self, **kwargs):
@@ -58,7 +67,9 @@ class WorderAdmin(TemplateView):
         context['Worders'] = Worder.objects.all()
         return context
 
-class TorderAdmin(TemplateView):
+
+class TorderAdmin(PermissionRequiredMixin, TemplateView):
+    permission_required = 'orders.view_torder'
     template_name = 'Order/Torder_admin.html'
 
     def get_context_data(self, **kwargs):
@@ -66,7 +77,9 @@ class TorderAdmin(TemplateView):
         context['Torders'] = Torder.objects.all()
         return context
 
-class AorderAdmin(TemplateView):
+
+class AorderAdmin(PermissionRequiredMixin, TemplateView):
+    permission_required = 'orders.view_aorder'
     template_name = 'Order/Aorder_admin.html'
 
     def get_context_data(self, **kwargs):
@@ -80,36 +93,42 @@ class AorderAdmin(TemplateView):
 """
 
 
+@permission_required('Orders.change_worder')
 def approveWorder(request, order_pk):
     order = Worder.objects.get(pk=order_pk)
     order.approve()
     return HttpResponseRedirect(reverse('Orders:worderadmin'))
 
 
+@permission_required('Orders.change_worder')
 def disapproveWorder(request, order_pk):
     order = Worder.objects.get(pk=order_pk)
     order.disapprove()
     return HttpResponseRedirect(reverse('Orders:worderadmin'))
 
 
+@permission_required('Orders.change_torder')
 def approveTorder(request, order_pk):
     order = Torder.objects.get(pk=order_pk)
     order.approve()
     return HttpResponseRedirect(reverse('Orders:torderadmin'))
 
 
+@permission_required('Orders.change_torder')
 def disapproveTorder(request, order_pk):
     order = Torder.objects.get(pk=order_pk)
     order.disapprove()
     return HttpResponseRedirect(reverse('Orders:torderadmin'))
 
 
+@permission_required('Orders.change_aorder')
 def approveAorder(request, order_pk):
     order = Aorder.objects.get(pk=order_pk)
     order.approve()
     return HttpResponseRedirect(reverse('Orders:aorderadmin'))
 
 
+@permission_required('Orders.change_aorder')
 def disapproveAorder(request, order_pk):
     order = Aorder.objects.get(pk=order_pk)
     order.disapprove()

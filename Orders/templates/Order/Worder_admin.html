@@ -25,7 +25,7 @@
                     <li class="list-group-item">
                     <div class="row">
                         <div class="col-8">
-                            <h5>{{ order.user }}</h5><h6> {{ order.date }}</h6><h6> {{ order.description }}</h6>
+                            <h5>{{ order.user.first_name }} {{ order.user.last_name }}</h5><h6> {{ order.date }}</h6><h6> {{ order.description }}</h6>
                         </div>
                         <div class="col-4">
                             <form action="/orders/worderadmin_approve/{{ order.pk }}/", method="POST">
@@ -50,7 +50,7 @@
                     <li class="list-group-item">
                     <div class="row">
                         <div class="col-8">
-                            <h5>{{ order.user }}</h5><h6> {{ order.date }}</h6><h6> {{ order.description }}</h6>
+                            <h5>{{ order.user.first_name }} {{ order.user.last_name }}</h5><h6> {{ order.date }}</h6><h6> {{ order.description }}</h6>
                         </div>
                         <div class="col-4">
                             <form action="/orders/worderadmin_disapprove/{{ order.pk }}/", method="POST">

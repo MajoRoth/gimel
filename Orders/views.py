@@ -7,7 +7,6 @@ from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMix
 from django.contrib.auth.decorators import permission_required
 
 
-
 # Create your views here.
 class OrderIndexView(LoginRequiredMixin, TemplateView):
     login_url = '/accounts/login/'
@@ -64,27 +63,27 @@ class WorderAdmin(PermissionRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['Worders'] = Worder.objects.all()
+        context['Worders'] = Worder.objects.order_by('-date')
         return context
 
 
 class TorderAdmin(PermissionRequiredMixin, TemplateView):
-    permission_required = 'orders.view_torder'
+    permission_required = 'Orders.view_torder'
     template_name = 'Order/Torder_admin.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['Torders'] = Torder.objects.all()
+        context['Torders'] = Torder.objects.order_by('-date')
         return context
 
 
 class AorderAdmin(PermissionRequiredMixin, TemplateView):
-    permission_required = 'orders.view_aorder'
+    permission_required = 'Orders.view_aorder'
     template_name = 'Order/Aorder_admin.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['Aorders'] = Aorder.objects.all()
+        context['Aorders'] = Aorder.objects.order_by('-date')
         return context
 
 

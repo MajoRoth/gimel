@@ -2,115 +2,23 @@
 {% load static %}
 
 {% block head %}
-
+    <link rel="stylesheet" href="{% static 'css/News/style.css' %}">
 {% endblock %}
 
 {% block content %}
-
-  <!--Main Navigation-->
-<header>
-
-</header>
-<!--Main Navigation-->
-
-<!--Main layout-->
-<main>
-  <!--Main container-->
-<div class="container">
-
-    <!--Grid row-->
-    <div class="row">
-        <h2>חדשות</h2>
-        <!--Grid column-->
-
+    <div class="container">
+        {% for new in News %}
+            <div class="jumbotron">
+            <div class="row">
+                <div class="col-8" style="text-align: right">
+                    <p>{{ new.text|linebreaks }}</p>
+                </div>
+                <div class="col-4">
+                    <img src="{{ new.image.url }}" id="newsImg">
+                </div>
+            </div>
+            </div>
+        {% endfor %}
     </div>
-    <!--Grid row-->
-<div class="row">
-  <div class = "card text-right">
-    <div class="card mb-3">
-      <img src="img/openai.png" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">כחכחכחכחכחכחכחכחככחככחח</h5>
-        <p class="card-text">כלכלכלכלכלכללכלכלכלכלכלכלכלכלכל.</p>
-        <a href="#!" class="btn btn-primary">לקרוא עוד</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-    <!--Grid row-->
-<div class="row">
-
-  <div class="card-deck">
-  <div class = "card text-right">
-    <div class="card">
-    <img src="img/pytorch.png" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Pytorch Gets a New Update</h5>
-      <p class="card-text">PyTorch is an open source machine learning library based on the Torch library, used for applications such as computer vision and natural language processing, primarily developed by Facebook's AI Research lab.</p>
-      <button type="button" class="btn btn-outline-secondary">Read More</button>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">Last updated 3 mins ago</small>
-    </div>
-  </div>
-  </div>
-  <div class="card">
-    <div class = "card text-right">
-    <img src="img/vslogo.jpeg" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Visual Studio 2021 Released</h5>
-      <p class="card-text">Microsoft Visual Studio is an integrated development environment (IDE) from Microsoft. It is used to develop computer programs, as well as websites, web apps, web services and mobile apps. Visual Studio uses Microsoft software development platforms such as Windows API, Windows Forms, Windows Presentation Foundation, Windows Store and Microsoft Silverlight. It can produce both native code and managed code.</p>
-      <button type="button" class="btn btn-outline-secondary">Read More</button>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">Last updated 3 mins ago</small>
-    </div>
-  </div>
-  </div>
-  <div class="card">
-    <div class = "card text-right">
-    <img src="img/hack.jpg" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">New Zero Day Exploit For Windows 10 Found</h5>
-      <p class="card-text">A zero-day (0day) vulnerability refers to a security vulnerability for which no mitigation or patch is available at the time it is disclosed or made public. Existing software patches are unable to properly defend against zero-day exploits, meaning attacks of this nature present a serious security risk to organizations. Until the underlying vulnerability is mitigated, a zero-day exploit is akin to a pathogen for which no vaccine is available. The Daily Swig offers insight into the most recent zero-day vulnerability news and zero-day exploits based on these unresolved bugs.</p>
-      <button type="button" class="btn btn-outline-secondary">Read More</button>
-    </div>
-  </div>
-    <div class="card-footer">
-      <small class="text-muted">Last updated 3 mins ago</small>
-    </div>
-  </div>
-</div>
-</div>
-<!--Grid row-->
-</div>
-<!--Main container-->
-
-</main>
-<!--Main layout-->
-
-<!--Footer-->
-<footer>
-  <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2020 Copyright: AlphaComputers
-  </div>
-  <!-- Copyright -->
-</footer>
-<!-- Footer -->
-
-  <!-- End your project here-->
-
-  <!-- jQuery -->
-  <script type="text/javascript" src="js/jquery.min.js"></script>
-  <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="js/popper.min.js"></script>
-  <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
-  <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="js/mdb.min.js"></script>
-  <!-- Your custom scripts (optional) -->
-  <script type="text/javascript"></script>
-
 
 {% endblock %}

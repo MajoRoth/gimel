@@ -68,9 +68,19 @@
             <a class="nav-link" href="{% url 'Orders:aorderadmin' %}">הזמנות שטח</a>
           </li>
             {% endif %}
+            {% if request.user|has_group:"Blogger" %}
+            <li class="nav-item">
+            <a class="nav-link" href="{% url 'News:create' %}">כתיבת פוסט</a>
+          </li>
+            {% endif %}
 
         </ul>
         <ul class="navbar-nav ml-auto nav-flex-icons">
+        {% if user.is_authenticated %}
+            <li class="nav-item">
+            <nobr><a class="nav-link" href="#">שלום, {{ user.first_name }} {{ user.last_name }}</a></nobr>
+          </li>
+        {% endif %}
           {% if user.is_authenticated %}
             <li class="nav-item">
             <a class="nav-link" href="{% url 'Accounts:logout' %}">התנתק </a>

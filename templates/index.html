@@ -1,15 +1,14 @@
 {% extends "base.html" %}
+{% load static %}
 {% block head %}
-
+    <link rel="stylesheet" href="{% static 'css/master.css' %}">
 {% endblock %}
 
 {% block content %}
 
     <div class="container">
-        <div class="jumbotron">
             <div class="row">
-                <h1>דף הבית</h1>
-            </div>
+                <img src="{% static 'images/home.png' %}" id="homeimg">
         </div>
     </div>
    

@@ -26,6 +26,16 @@
     {% block head %}
 
     {% endblock %}
+
+    <style>
+        ul > li {
+    display: inline-block;
+    /* You can also add some margins here to make it look prettier */
+    zoom:1;
+    *display:inline;
+    /* this fix is needed for IE7- */
+}
+    </style>
 </head>
 <body>
     <!--Navbar -->
@@ -104,11 +114,34 @@
 </nav>
 <!--/.Navbar-->
 
+    <!-- SPACE -->
+    <div style="height: 15vh; width: 100%"></div>
+
 
 
     {% block content %}
 
     {% endblock %}
+
+    <!-- SPACE -->
+    <div style="height: 15vh; width: 100%"></div>
+
+<div style="width: 100%; height: 15vh; bottom: 0; border: #ededed 1px solid; z-index: 1; text-align: center">
+    <ul style="padding-top: 3vh">
+        <li><a href="https://www.facebook.com/profile.php?id=100004309170611">
+            <img src="{% static 'images/facebook.png' %}" style="width: 40px; height: 40px; margin: 10px">
+        </a></li>
+        <li><a href="https://www.instagram.com/shevetgimel/">
+            <img src="{% static 'images/instegram.png' %}" style="width: 40px; height: 40px; margin: 10px">
+        </a></li>
+        <li><a href="https://israelscoutsassociation.accounts.ondemand.com">
+            <img src="{% static 'images/scouts.jpeg' %}" style="width: 40px; height: 40px; margin: 10px">
+        </a></li>
+        <li><a href="https://hamasa.zofim.org.il/login">
+            <img src="{% static 'images/journey.jpeg' %}" style="width: 40px; height: 40px; margin: 10px">
+        </a></li>
+    </ul>
+</div>
 
 </body>
 </html>

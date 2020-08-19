@@ -12,6 +12,7 @@ class Worder(models.Model):
     description = models.TextField()
     date = models.DateField(default=timezone.now())
     Approved = models.BooleanField(default=False)
+    collected = models.BooleanField(default=False)
     Active = models.BooleanField(default=True)  # instead of deleting - set false
 
     def approve(self):
@@ -20,11 +21,23 @@ class Worder(models.Model):
 
     def disapprove(self):
         self.Approved = False
+        self.collected = False
+        self.Active = True
+        self.save()
+
+    def collect(self):
+        self.collected = True
+        self.save()
+
+    def returned(self):
+        self.collected = False
+        self.Approved = False
+        self.Active = False
         self.save()
 
     def get_absolute_url(self):
         # We will change to the list view once created
-        return reverse('home')
+        return reverse('Orders:index')
 
 
 class Torder(models.Model):
@@ -46,7 +59,7 @@ class Torder(models.Model):
 
     def get_absolute_url(self):
         # We will change to the list view once created
-        return reverse('home')
+        return reverse('Orders:index')
 
 
 class Aorder(models.Model):
@@ -78,7 +91,7 @@ class Aorder(models.Model):
 
     def get_absolute_url(self):
         # We will change to the list view once created
-        return reverse('home')
+        return reverse('Orders:index')
 
 
 

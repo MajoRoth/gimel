@@ -1,5 +1,26 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald:400,700');
 
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body{
+    background-image: url("/static/images/home_croped.png");
+    margin: 0;
+    padding: 0;
+    perspective: 1px;
+    transform-style: preserve-3d;
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+}
+
 .navbar {
     background-color: #ffffff;
 
@@ -9,18 +30,17 @@
     color: #f91da3 !important;
 }
 
-
-p {
-    color: #f91da3 !important;
-    direction: rtl;
+.white-text{
+    color: white;
 }
 
-ul > li {
-    display: inline-block;
-    /* You can also add some margins here to make it look prettier */
-    zoom:1;
-    *display:inline;
-    /* this fix is needed for IE7- */
+.pink-text{
+    color: deeppink;
+}
+
+
+p {
+    direction: rtl;
 }
 
 
@@ -58,74 +78,55 @@ ul > li {
     border-color: #f91da3 !important;
 }
 
-
-.box {
-    position: relative;
-    transform: skewy(-10deg);
-    width: 400px;
-    height: 440px;
-    background: #fff;
-    box-shadow: -10px 5px 30px rgba(0, 0, 0, 0.5);
-    box-sizing: border-box;
-    transition: 0.5s;
-    margin: 30px;
-    margin-top: 70px;
-}
-
-.box::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -25px;
-    width: 25px;
-    height: 100%;
-    background: #cd7f32;
-    transform-origin: right bottom;
-    transform: skewy(45deg)
-}
-
-.box::after {
-    content: "";
-    position: absolute;
-    top: -25px;
-    left: 0;
+/* BOT NAV*/
+.botnav{
     width: 100%;
-    height: 25px;
-    background: #eaeaea;
-    transform-origin: bottom left;
-    transform: skewx(45deg)
-}
-
-.box h3 {
-    position: relative;
-    background: #cd7f32;
-    color: #fff;
+    height: 15vh;
+    bottom: 0px;
+    border: #ededed 1px solid;
+    z-index: 1;
     text-align: center;
-    margin: 40px 0 0;
-    padding: 5px 0;
-    font-size: 36px;
-    text-transform: uppercase;
-    text-shadow: -2px 2px 10px rgba(0, 0, 0, 0.5);
+    background: white;
+    margin-top: 30vh;
 }
 
-.box h3::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -25px;
-    width: 25px;
-    height: 100%;
-    background: #cd7f32;
-    transform-origin: top right;
-    transform: skewy(45deg);
+.navicon{
+    width: 40px;
+    height: 40px;
+    margin: 10px;
 }
 
-.box p {
-    padding: 0 20px;
-    color: white;
-    text-align: center;
+ul > li {
+    display: inline-block;
+    /* You can also add some margins here to make it look prettier */
+    zoom:1;
+    *display:inline;
+    /* this fix is needed for IE7- */
 }
 
+.paragraph{
+    text-align: right;
+    font-size: 1.2em;
+}
 
+.canvas-black{
+    background: rgba(0,0,0,0.6);
+    padding: 1em;
+    margin-top: 20px;
+    border-radius: 20px;
+
+}
+
+.canvas-white{
+    background: rgba(255,255,255,0.6);
+    padding: 1em;
+    margin-top: 20px;
+    border-radius: 20px;
+
+}
+
+.list-group{
+    border-radius: 15px;
+}
 
 

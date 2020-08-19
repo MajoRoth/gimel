@@ -44,7 +44,6 @@
                     <li class="list-group-item" style="text-align: center">
                         <button type="submit" disabled class="btn btn-outline-success">הזמנות מאושרות</button>
                     </li>
-                <!-- Temporary -->
                 {% for order in Worders %}
                     {% if order.Approved %}
                     <li class="list-group-item">
@@ -52,11 +51,22 @@
                         <div class="col-8">
                             <h5>{{ order.user.first_name }} {{ order.user.last_name }}</h5><h6> {{ order.date }}</h6><h6> {{ order.description }}</h6>
                         </div>
-                        <div class="col-4">
+                        <div class="col-4" style="text-align: center">
                             <form action="/orders/worderadmin_disapprove/{{ order.pk }}/", method="POST">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-outline-danger">בטל אישור</button>
+                                <button type="submit" class="btn btn-outline-danger" style="margin-bottom: 10px">בטל אישור</button>
                             </form>
+                            {% if order.collected %}
+                                <form action="/orders/worderadmin_return/{{ order.pk }}/", method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-danger">הוחזרה</button>
+                                </form>
+                            {% else %}
+                                <form action="/orders/worderadmin_collect/{{ order.pk }}/", method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-danger">נמסרה</button>
+                                </form>
+                            {% endif %}
                         </div>
                     </div>
                     </li>

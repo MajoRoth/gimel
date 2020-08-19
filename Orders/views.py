@@ -4,7 +4,8 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from Orders import forms
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
-from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.decorators import permission_required, login_required
+from django.utils import timezone
 
 
 # Create your views here.
@@ -15,9 +16,9 @@ class OrderIndexView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['Worders'] = Worder.objects.filter(user=self.request.user)
-        context['Torders'] = Torder.objects.filter(user=self.request.user)
-        context['Aorders'] = Aorder.objects.filter(user=self.request.user)
+        context['Worders'] = Worder.objects.filter(user=self.request.user).filter(Active=True)
+        context['Torders'] = Torder.objects.filter(user=self.request.user).filter(Active=True).filter(date__gte=timezone.now())
+        context['Aorders'] = Aorder.objects.filter(user=self.request.user).filter(Active=True).filter(date__gte=timezone.now())
         return context
 
 
@@ -63,7 +64,7 @@ class WorderAdmin(PermissionRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['Worders'] = Worder.objects.order_by('-date')
+        context['Worders'] = Worder.objects.filter(Active=True).order_by('date')
         return context
 
 
@@ -73,7 +74,7 @@ class TorderAdmin(PermissionRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['Torders'] = Torder.objects.order_by('-date')
+        context['Torders'] = Torder.objects.order_by('date')
         return context
 
 
@@ -83,7 +84,7 @@ class AorderAdmin(PermissionRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['Aorders'] = Aorder.objects.order_by('-date')
+        context['Aorders'] = Aorder.objects.order_by('date')
         return context
 
 
@@ -91,11 +92,23 @@ class AorderAdmin(PermissionRequiredMixin, TemplateView):
     Approval methods - function views:
 """
 
-
+#Worder
 @permission_required('Orders.change_worder')
 def approveWorder(request, order_pk):
     order = Worder.objects.get(pk=order_pk)
     order.approve()
+    return HttpResponseRedirect(reverse('Orders:worderadmin'))
+
+@permission_required('Orders.change_worder')
+def collectWorder(request, order_pk):
+    order = Worder.objects.get(pk=order_pk)
+    order.collect()
+    return HttpResponseRedirect(reverse('Orders:worderadmin'))
+
+@permission_required('Orders.change_worder')
+def returnWorder(request, order_pk):
+    order = Worder.objects.get(pk=order_pk)
+    order.returned()
     return HttpResponseRedirect(reverse('Orders:worderadmin'))
 
 
@@ -106,6 +119,16 @@ def disapproveWorder(request, order_pk):
     return HttpResponseRedirect(reverse('Orders:worderadmin'))
 
 
+@login_required()
+def deleteWorder(request, order_pk):
+    order = Worder.objects.get(pk=order_pk)
+    if order.collected:
+        return HttpResponseRedirect(reverse('Orders:index'))
+    order.delete()
+    return HttpResponseRedirect(reverse('Orders:index'))
+
+
+#Torder
 @permission_required('Orders.change_torder')
 def approveTorder(request, order_pk):
     order = Torder.objects.get(pk=order_pk)
@@ -120,6 +143,14 @@ def disapproveTorder(request, order_pk):
     return HttpResponseRedirect(reverse('Orders:torderadmin'))
 
 
+@login_required()
+def deleteTorder(request, order_pk):
+    order = Torder.objects.get(pk=order_pk)
+    order.delete()
+    return HttpResponseRedirect(reverse('Orders:index'))
+
+
+# Aorder
 @permission_required('Orders.change_aorder')
 def approveAorder(request, order_pk):
     order = Aorder.objects.get(pk=order_pk)
@@ -132,6 +163,13 @@ def disapproveAorder(request, order_pk):
     order = Aorder.objects.get(pk=order_pk)
     order.disapprove()
     return HttpResponseRedirect(reverse('Orders:aorderadmin'))
+
+
+@login_required()
+def deleteAorder(request, order_pk):
+    order = Aorder.objects.get(pk=order_pk)
+    order.delete()
+    return HttpResponseRedirect(reverse('Orders:index'))
 
 
 

@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
+    <div class="container canvas-white">
         <div class="row">
             <div class="col-4">
                 <ul class="list-group">
@@ -21,8 +21,15 @@
                     {% if order.Approved %}
                     <li class="list-group-item">
                     <div class="row">
-                        <div class="col-8">
-                            <h5>{{ order.date }}</h5><h6> {{ order.description }}</h6>
+                        <div class="col-8" style="text-align:right">
+                            <h5>{{ order.date }}</h5>
+                            <h6> {{ order.description }}</h6>
+                            {% if order.collected %}
+                            <h6 style="color: red">ציוד לא הוחזר</h6>
+                        {% endif %}
+                        {% if not order.collected %}
+                            <a href="{% url 'Orders:DeleteWorder' order.pk %}"><i class="fas fa-trash"></i></a>
+                        {% endif %}
                         </div>
                         <div class="col-4">
                             <button type="button" disabled class="btn btn-outline-success">מאושר</button>
@@ -32,8 +39,9 @@
                     {% else %}
                         <li class="list-group-item">
                     <div class="row">
-                        <div class="col-8">
+                        <div class="col-8" style="text-align: right">
                             <h5>{{ order.date  }}</h5><h6> {{ order.description }}</h6>
+                            <a href="{% url 'Orders:DeleteWorder' order.pk %}"><i class="fas fa-trash"></i></a>
                         </div>
                         <div class="col-4">
                             <button type="button" disabled class="btn btn-outline-danger">לא מאושר</button>

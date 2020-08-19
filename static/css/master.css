@@ -32,6 +32,8 @@ body{
 
 .white-text{
     color: white;
+    font-size: 1.2em;
+    text-shadow: 5px 5px 3px black;
 }
 
 .pink-text{
@@ -145,4 +147,18 @@ top:0;
 height:100%;
 width:100%;
 position:absolute;
+}
+
+.peilim-header{
+    text-align: center;
+    font-size: 5em;
+    animation: color-change 3s infinite;
+}
+
+@keyframes color-change {
+  0% { color: red; }
+  25% {color: black}
+  50% { color: deeppink; }
+  75% { color: green; }
+  100% { color: purple; }
 }

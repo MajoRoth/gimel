@@ -8,15 +8,11 @@
 {% block content %}
     <div class="container">
         {% for new in News %}
-            <div class="jumbotron">
-            <div class="row">
-                <div class="col-8" style="text-align: right">
-                    <p class="pink-text">{{ new.text|linebreaks }}</p>
+            <div class="card mb-3">
+                <img class="card-img-top" style="height: 50vh" src="{{ new.image.url }}" alt="Card image cap">
+                <div class="card-body paragraph">
+                    <p class="card-text pink-text">{{ new.text|linebreaks }}</p>
                 </div>
-                <div class="col-4">
-                    <img src="{{ new.image.url }}" id="newsImg">
-                </div>
-            </div>
             </div>
         {% endfor %}
     </div>

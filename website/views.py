@@ -6,3 +6,6 @@ class HomePage(TemplateView):
 
 class MoralsPage(TemplateView):
     template_name = "morals.html"
+
+class JingelsPage(TemplateView):
+    template_name = "jingels.html"

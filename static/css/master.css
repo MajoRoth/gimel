@@ -36,6 +36,13 @@ body{
     text-shadow: 5px 5px 3px black;
 }
 
+.white-header{
+    color: white;
+    font-size: 3em;
+    text-shadow: 5px 5px 3px black;
+
+}
+
 .pink-text{
     color: deeppink;
 }
@@ -161,4 +168,19 @@ position:absolute;
   50% { color: deeppink; }
   75% { color: green; }
   100% { color: purple; }
+}
+
+.login-button{
+    width: 30%;
+}
+
+.img{
+    width: 100%;
+
+}
+
+.img-border{
+    width: 100%;
+    margin-bottom: 10vh;
+
 }

@@ -1,16 +1,29 @@
 {% extends 'base.html' %}
 {% load bootstrap3 %}
+{% load crispy_forms_tags %}
 {% block content %}
     <div class="container">
         <div class="row">
-            <h1>התחבר</h1>
+            <h1 class="white-header">התחבר</h1>
         </div>
         <form method="POST" action="{% url 'Accounts:login' %}">
             {% csrf_token %}
-            <div class="row">
-                {%  bootstrap_form form %}
+            <div class="row" style="text-align: right">
+                <div class="col-6">
+                {%  bootstrap_field form.username show_label=False%}
+                </div>
             </div>
-            <input type="submit" value="Login">
+            <div class="row" style="text-align: right">
+                <div class="col-6">
+                {%  bootstrap_field form.password show_label=False %}
+                </div>
+            </div>
+            <div class="row" style="text-align: right">
+                <div class="col-6">
+                    {% bootstrap_button "התחבר" button_type='submit' button_class='btn btn-light' %}
+                </div>
+            </div>
+
         </form>
     </div>
 

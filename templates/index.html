@@ -33,10 +33,9 @@
       <input type="checkbox" class="faux-ui-facia">
 
       <div class="slide" slide="1" >
-        <img src="{% static 'images/gallery5.jpeg' %}" class="img-slide" alt="Slide 1">
+        <img src="{% static 'images/gallery5_croped.jpeg' %}" class="img-slide" alt="Slide 1">
       </div>
 
-      <div class="counter" count="5"> / 5</div>
 
     </div>
 
@@ -86,21 +85,7 @@
         </div>
     </div>
 
-    <script>
-        var slideIndex = 0;
-        showSlides();
 
-        function showSlides() {
-          var i;
-          var slides = document.getElementsByClassName("mySlides");
-          for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-          }
-          slideIndex++;
-          if (slideIndex > slides.length) {slideIndex = 1}
-          slides[slideIndex-1].style.display = "block";
-          setTimeout(showSlides, 2000); // Change image every 2 seconds
-        }
-    </script>
+    <script src="{% static 'js/carousell.js' %}"></script>
 
 {% endblock %}

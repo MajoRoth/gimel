@@ -7,6 +7,13 @@
 
 {% block content %}
     <div class="container">
+        {% if not News %}
+            <div class="canvas-black" style="height: 40vh; text-align: center">
+                <h1 class="white-header">אין כרגע פוסטים</h1>
+                <h1 class="white-text">פוסט ראשון בקרוב</h1>
+
+            </div>
+        {% endif %}
         {% for new in News %}
             <div class="card mb-3">
                 <img class="card-img-top" style="height: 50vh" src="{{ new.image.url }}" alt="Card image cap">

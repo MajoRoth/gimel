@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 
 
 # Create your models here.
@@ -63,19 +64,20 @@ class Torder(models.Model):
 
 
 class Aorder(models.Model):
-    ListOfAreas = [
-        ('AU', 'אולם'), # Auditorium
-        ('CO', 'מגרש'), # Court
-        ('BY', 'מערום'), # Back Yard
-        ('WO', 'חורשה'), # Woods
-    ]
+
+    class AreaChoices(models.TextChoices):
+        AU = 'AU', _('אולם')
+        CO = 'CO', _('מגרש')
+        BY = 'BY', _('מערום')
+        WO = 'WO', _('חורשה')
+
     # An area order !!!
     user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     created_at = models.DateTimeField(auto_now=True)
     area = models.CharField(
         max_length=2,
-        choices=ListOfAreas,
-        default='CO')
+        choices=AreaChoices.choices,
+        default=AreaChoices.CO)
 
     date = models.DateField(default=timezone.now())
     Approved = models.BooleanField(default=False)

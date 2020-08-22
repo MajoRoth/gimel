@@ -24,8 +24,8 @@ def home(request):
             send_mail(cd.get('name'),
                       cd.get('phone'),
                       cd.get('email'),
-                      cd.get('message'))
-            return render(request, 'index.html', {'form': form})
+                      cd.get('text'))
+            return render(request, 'index.html', {'form': forms.ContactForm()})
 
 
 

@@ -8,10 +8,6 @@ def send_mail(name, phone, email, message):
     sender_email = "gimel1987dev@gmail.com"
     receiver_email = "gimel1987dev@gmail.com"
 
-    if isinstance(message, type(None)):
-        print(message)
-        message = 'None'
-
     msg = MIMEMultipart('alternative')
     msg['Subject'] = name
     msg['From'] = sender_email

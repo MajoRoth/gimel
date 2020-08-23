@@ -4,7 +4,7 @@ from email.mime.text import MIMEText
 
 def send_mail(name, phone, email, message):
     port = 465  # For SSL
-    password = "OneLifeOneLove"
+    password = "********"
     sender_email = "gimel1987dev@gmail.com"
     receiver_email = "gimel1987dev@gmail.com"
 

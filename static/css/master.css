@@ -190,3 +190,9 @@ position:absolute;
 .jingel{
     max-width: 90vw;
 }
+
+nav a:hover,
+nav a:focus{
+    color: #e016f3 !important;
+    text-shadow: 1px 1px 1px black;
+}

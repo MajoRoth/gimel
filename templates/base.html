@@ -22,13 +22,17 @@
       <!-- Your custom styles (optional) -->
       <link rel="stylesheet" href="{% static 'css/master.css' %}">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+      <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+      
     {% block head %}
 
     {% endblock %}
 
     <style>
-
+    .navbar-collapse.collapse.in {
+      display: block!important;
+    }
     </style>
 </head>
 <body>
@@ -143,6 +147,14 @@
 
     </ul>
 </div>
+<!--Footer-->
+<footer>
+<!-- Copyright -->
+      <div class="footer-copyright text-center py-3">© 2020 Copyright: Amit Roth (https://github.com/MajoRoth) & Miki Raz (https://github.com/Pr0metheus9)
+      </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
 
 </body>
 </html>

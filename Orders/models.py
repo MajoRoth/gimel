@@ -15,6 +15,8 @@ class Worder(models.Model):
     Approved = models.BooleanField(default=False)
     collected = models.BooleanField(default=False)
     Active = models.BooleanField(default=True)  # instead of deleting - set false
+    Deleted = models.BooleanField(default=False)
+    deleted_date = models.DateTimeField(null=True, blank=True)  # instead of deleting - set false
 
     def approve(self):
         self.Approved = True
@@ -34,6 +36,12 @@ class Worder(models.Model):
         self.collected = False
         self.Approved = False
         self.Active = False
+        self.save()
+
+    def deleted(self):
+        self.Active = False
+        self.Deleted = True
+        self.deleted_date = timezone.now()
         self.save()
 
     def get_absolute_url(self):

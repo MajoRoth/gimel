@@ -124,7 +124,7 @@ def deleteWorder(request, order_pk):
     order = Worder.objects.get(pk=order_pk)
     if order.collected:
         return HttpResponseRedirect(reverse('Orders:index'))
-    order.delete()
+    order.deleted()
     return HttpResponseRedirect(reverse('Orders:index'))
 
 

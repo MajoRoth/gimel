@@ -48,6 +48,9 @@ class Worder(models.Model):
         # We will change to the list view once created
         return reverse('Orders:index')
 
+    def __str__(self):
+        return "{} {} {}".format(self.date, self.user.first_name, self.user.last_name)
+
 
 class Torder(models.Model):
     # An order from tahzooka !!!
@@ -69,6 +72,9 @@ class Torder(models.Model):
     def get_absolute_url(self):
         # We will change to the list view once created
         return reverse('Orders:index')
+
+    def __str__(self):
+        return "{} {} {}".format(self.date, self.user.first_name, self.user.last_name)
 
 
 class Aorder(models.Model):
@@ -102,6 +108,9 @@ class Aorder(models.Model):
     def get_absolute_url(self):
         # We will change to the list view once created
         return reverse('Orders:index')
+
+    def __str__(self):
+        return "{} {} {}".format(self.date, self.user.first_name, self.user.last_name)
 
 
 

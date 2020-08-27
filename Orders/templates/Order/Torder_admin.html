@@ -13,9 +13,9 @@
                 <h1 id="Theadline">תחזוקה</h1>
             </div>
         </div>
-        <div class="row">
-            <div class="col-6">
-                <ul class="list-group">
+        <div class="row row-cols-1 row-cols-lg-2">
+            <div class="col">
+                <ul class="list-group order-card">
                     <li class="list-group-item" style="text-align: center">
                         <button type="submit" disabled class="btn btn-outline-danger">הזמנות לא מאושרות</button>
                     </li>
@@ -39,8 +39,8 @@
                 {% endfor %}
                 </ul>
             </div>
-        <div class="col-6">
-                <ul class="list-group">
+        <div class="col">
+                <ul class="list-group order-card">
                     <li class="list-group-item" style="text-align: center">
                         <button type="submit" disabled class="btn btn-outline-success">הזמנות מאושרות</button>
                     </li>
@@ -55,8 +55,19 @@
                         <div class="col-4">
                             <form action="/orders/torderadmin_disapprove/{{ order.pk }}/", method="POST">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-outline-danger">בטל אישור</button>
+                                <button type="submit" class="btn btn-outline-danger admin-button">בטל אישור</button>
                             </form>
+                            {% if order.collected %}
+                                <form action="/orders/torderadmin_return/{{ order.pk }}/", method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-danger admin-button">הוחזרה</button>
+                                </form>
+                            {% else %}
+                                <form action="/orders/torderadmin_collect/{{ order.pk }}/", method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-danger admin-button">נמסרה</button>
+                                </form>
+                            {% endif %}
                         </div>
                     </div>
                     </li>

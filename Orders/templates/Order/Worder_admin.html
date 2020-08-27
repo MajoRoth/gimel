@@ -1,5 +1,6 @@
 {% extends "index.html" %}
 {% load static %}
+{% load bootstrap3 %}
 
 {% block head %}
     <link rel="stylesheet" href="{% static 'css/Orders/style.css' %}">
@@ -13,9 +14,9 @@
                 <h1 id="Wheadline">מחסן</h1>
             </div>
         </div>
-        <div class="row">
-            <div class="col-6">
-                <ul class="list-group">
+        <div class="row row-cols-1 row-cols-lg-2">
+            <div class="col">
+                <ul class="list-group order-card">
                     <li class="list-group-item" style="text-align: center">
                         <button type="submit" disabled class="btn btn-outline-danger">הזמנות לא מאושרות</button>
                     </li>
@@ -23,15 +24,27 @@
                 {% for order in Worders %}
                     {% if not order.Approved %}
                     <li class="list-group-item">
-                    <div class="row">
+                    <div class="row" style="margin-bottom: -3vh">
                         <div class="col-8">
-                            <h5>{{ order.user.first_name }} {{ order.user.last_name }}</h5><h6> {{ order.date|date:"d/m/Y" }}</h6><h6> {{ order.description }}</h6>
+                            <h5>{{ order.user.first_name }} {{ order.user.last_name }}</h5><h6> {{ order.date|date:"d/m/Y" }}</h6>
                         </div>
-                        <div class="col-4">
-                            <form action="/orders/worderadmin_approve/{{ order.pk }}/", method="POST">
+                        <div class="col-4" style="text-align: center">
+                            <form action="{% url 'Orders:ApproveWorder' order_pk=order.pk %}", method="POST">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-outline-success">אשר</button>
+                                <button type="submit" class="btn btn-outline-success admin-button">אשר</button>
                             </form>
+                            <form action="{% url 'Orders:CommentWorder' order_pk=order.pk %}", method="GET">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-dark admin-button">הערה</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:-10px">
+                        <div class="col" style="text-align: right">
+                            <h6> {{ order.description }}</h6>
+                            {% if order.comment %}
+                                <p class="comment">{{ order.comment }}</p>
+                            {% endif %}
                         </div>
                     </div>
                     </li>
@@ -39,8 +52,8 @@
                 {% endfor %}
                 </ul>
             </div>
-        <div class="col-6">
-                <ul class="list-group">
+        <div class="col">
+                <ul class="list-group order-card">
                     <li class="list-group-item" style="text-align: center">
                         <button type="submit" disabled class="btn btn-outline-success">הזמנות מאושרות</button>
                     </li>
@@ -50,21 +63,26 @@
                     <div class="row">
                         <div class="col-8">
                             <h5>{{ order.user.first_name }} {{ order.user.last_name }}</h5><h6> {{ order.date|date:"d/m/Y" }}</h6><h6> {{ order.description }}</h6>
+                            <h6 class="comment"> {{ order.comment }}</h6>
                         </div>
                         <div class="col-4" style="text-align: center">
                             <form action="/orders/worderadmin_disapprove/{{ order.pk }}/", method="POST">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-outline-danger" style="margin-bottom: 10px">בטל אישור</button>
+                                <button type="submit" class="btn btn-outline-danger admin-button">בטל אישור</button>
+                            </form>
+                            <form action="{% url 'Orders:CommentWorder' order_pk=order.pk %}", method="GET">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-dark admin-button">הערה</button>
                             </form>
                             {% if order.collected %}
                                 <form action="/orders/worderadmin_return/{{ order.pk }}/", method="POST">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-outline-danger">הוחזרה</button>
+                                <button type="submit" class="btn btn-outline-danger admin-button">הוחזרה</button>
                                 </form>
                             {% else %}
                                 <form action="/orders/worderadmin_collect/{{ order.pk }}/", method="POST">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-outline-danger">נמסרה</button>
+                                <button type="submit" class="btn btn-outline-danger admin-button">נמסרה</button>
                                 </form>
                             {% endif %}
                         </div>

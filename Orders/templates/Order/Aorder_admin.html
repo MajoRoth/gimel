@@ -13,9 +13,9 @@
                 <h1 id="Aheadline">שטחים</h1>
             </div>
         </div>
-        <div class="row">
-            <div class="col-6">
-                <ul class="list-group">
+        <div class="row row-cols-1 row-cols-lg-2">
+            <div class="col">
+                <ul class="list-group order-card">
                     <li class="list-group-item" style="text-align: center">
                         <button type="submit" disabled class="btn btn-outline-danger">הזמנות לא מאושרות</button>
                     </li>
@@ -32,7 +32,7 @@
                         <div class="col-4">
                             <form action="/orders/aorderadmin_approve/{{ order.pk }}/", method="POST">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-outline-success">אשר</button>
+                                <button type="submit" class="btn btn-outline-success admin-button">אשר</button>
                             </form>
                         </div>
                     </div>
@@ -41,8 +41,8 @@
                 {% endfor %}
                 </ul>
             </div>
-        <div class="col-6">
-                <ul class="list-group">
+        <div class="col">
+                <ul class="list-group order-card">
                     <li class="list-group-item" style="text-align: center">
                         <button type="submit" disabled class="btn btn-outline-success">הזמנות מאושרות</button>
                     </li>
@@ -59,7 +59,7 @@
                         <div class="col-4">
                             <form action="/orders/aorderadmin_disapprove/{{ order.pk }}/", method="POST">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-outline-danger">בטל אישור</button>
+                                <button type="submit" class="btn btn-outline-danger admin-button">בטל אישור</button>
                             </form>
                         </div>
                     </div>

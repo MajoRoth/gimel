@@ -24,9 +24,12 @@
                         <div class="col-8" style="text-align:right">
                             <h5>{{ order.date|date:"d/m/Y" }}</h5>
                             <h6> {{ order.description }}</h6>
+                            {% if order.comment is not None %}
+                            <h6 class="comment"> {{ order.comment }}</h6>
+                            {% endif %}
                             {% if order.collected %}
                             <h6 style="color: red">ציוד לא הוחזר</h6>
-                        {% endif %}
+                            {% endif %}
                         {% if not order.collected %}
                             <a href="{% url 'Orders:DeleteWorder' order.pk %}"><i class="fas fa-trash"></i></a>
                         {% endif %}
@@ -40,7 +43,11 @@
                         <li class="list-group-item">
                     <div class="row">
                         <div class="col-8" style="text-align: right">
-                            <h5>{{ order.date|date:"d/m/Y"  }}</h5><h6> {{ order.description }}</h6>
+                            <h5>{{ order.date|date:"d/m/Y"  }}</h5>
+                            <h6> {{ order.description }}</h6>
+                            {% if order.comment %}
+                            <h6 class="comment"> {{ order.comment }}</h6>
+                            {% endif %}
                             <a href="{% url 'Orders:DeleteWorder' order.pk %}"><i class="fas fa-trash"></i></a>
                         </div>
                         <div class="col-4">
@@ -67,6 +74,9 @@
                     <div class="row">
                         <div class="col-8">
                             <h5>{{ order.date|date:"d/m/Y"  }}</h5><h6> {{ order.description }}</h6>
+                            {% if order.collected %}
+                            <h6 style="color: red">ציוד לא הוחזר</h6>
+                            {% endif %}
                         </div>
                         <div class="col-4">
                             <button type="button" disabled class="btn btn-outline-success">מאושר</button>

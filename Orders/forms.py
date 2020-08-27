@@ -27,3 +27,14 @@ class AorderFrom(forms.ModelForm):
         widgets = {
             'date': forms.SelectDateWidget()
         }
+
+
+class WorderCommentFrom(forms.ModelForm):
+    class Meta:
+        model = Worder
+        fields = ['comment']
+        widgets = {
+            'comment': forms.TextInput()
+        }
+
+

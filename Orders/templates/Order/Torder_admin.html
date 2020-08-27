@@ -28,7 +28,7 @@
                             <h5>{{ order.user.first_name }} {{ order.user.last_name }}</h5><h6> {{ order.date|date:"d/m/Y" }}</h6><h6> {{ order.description }}</h6>
                         </div>
                         <div class="col-4">
-                            <form action="/orders/torderadmin_approve/{{ order.pk }}/", method="POST">
+                            <form action="{% url 'Orders:ApproveTorder' order_pk=order.pk %}", method="POST">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-outline-success">אשר</button>
                             </form>
@@ -53,17 +53,17 @@
                             <h5>{{ order.user.first_name }} {{ order.user.last_name }}</h5><h6> {{ order.date|date:"d/m/Y" }}</h6><h6> {{ order.description }}</h6>
                         </div>
                         <div class="col-4">
-                            <form action="/orders/torderadmin_disapprove/{{ order.pk }}/", method="POST">
+                            <form action="{% url 'Orders:disApproveTorder' order_pk=order.pk %}", method="POST">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-outline-danger admin-button">בטל אישור</button>
                             </form>
                             {% if order.collected %}
-                                <form action="/orders/torderadmin_return/{{ order.pk }}/", method="POST">
+                                <form action="{% url 'Orders:ReturnTorder' order_pk=order.pk %}", method="POST">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-outline-danger admin-button">הוחזרה</button>
                                 </form>
                             {% else %}
-                                <form action="/orders/torderadmin_collect/{{ order.pk }}/", method="POST">
+                                <form action="{% url 'Orders:CollectTorder' order_pk=order.pk %}", method="POST">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-outline-danger admin-button">נמסרה</button>
                                 </form>

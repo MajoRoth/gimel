@@ -66,7 +66,7 @@
                             <h6 class="comment"> {{ order.comment }}</h6>
                         </div>
                         <div class="col-4" style="text-align: center">
-                            <form action="/orders/worderadmin_disapprove/{{ order.pk }}/", method="POST">
+                            <form action="{% url 'Orders:disApproveWorder' order_pk=order.pk %}", method="POST">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-outline-danger admin-button">בטל אישור</button>
                             </form>
@@ -75,12 +75,12 @@
                                 <button type="submit" class="btn btn-outline-dark admin-button">הערה</button>
                             </form>
                             {% if order.collected %}
-                                <form action="/orders/worderadmin_return/{{ order.pk }}/", method="POST">
+                                <form action="{% url 'Orders:ReturnWorder' order_pk=order.pk %}", method="POST">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-outline-danger admin-button">הוחזרה</button>
                                 </form>
                             {% else %}
-                                <form action="/orders/worderadmin_collect/{{ order.pk }}/", method="POST">
+                                <form action="{% url 'Orders:CollectWorder' order_pk=order.pk %}", method="POST">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-outline-danger admin-button">נמסרה</button>
                                 </form>

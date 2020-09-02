@@ -27,6 +27,11 @@ body{
 
 }
 
+footer {
+    color: #f91da3 !important;
+}
+
+
 .navbar {
     background-color: #ffffff;
 

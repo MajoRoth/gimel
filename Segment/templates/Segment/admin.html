@@ -1,0 +1,65 @@
+{% extends "base_no_footer.html" %}
+{% load static %}
+{% load bootstrap3 %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/Segment/style.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container right-container">
+    <div class="canvas-white">
+        <div class="row" style="margin-bottom: 0px">
+            <h1 id="Theadline" style="font-size: 40px">הוסף גזרה</h1>
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            {% bootstrap_form form show_label=False%}
+            <input type="submit" class="btn btn-primary" value="Submit">
+        </form>
+        <p>
+        {% for user in user_list %}
+            {{ user.username }}
+        {% endfor %}
+        </p>
+        <p>
+        {% for seg in segment_list %}
+            {{ seg.get_segment_display }}
+        {% endfor %}
+        </p>
+    </div>
+    </div>
+    <div class="container left-container">
+        <div class="row">
+            <div class="col">
+            <ul class="list-group" style="margin-bottom: 5vh">
+                    <li class="list-group-item" style="text-align: center">
+                        <h3>גזרות להיום</h3>
+                    </li>
+                {% for segment in segments %}
+                    {% if segment.Approved != True %}
+                        <li class="list-group-item" style="text-align: right">
+                        <h2 style="color: red">{{ segment.user.get_full_name }}: {{ segment.get_segment_display }}</h2>
+                            <form action="{% url 'Segment:ApproveSegment' seg_pk=segment.pk %}", method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-success admin-button">אשר</button>
+                            </form>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+                {% for segment in segments %}
+                    {% if segment.Approved == True %}
+                        <li class="list-group-item" style="text-align: right">
+                        <h2 style="color: green">{{ segment.user.get_full_name }}: {{ segment.get_segment_display }}</h2>
+                            <form action="{% url 'Segment:disApproveSegment' seg_pk=segment.pk %}", method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-danger admin-button">בטל אשר</button>
+                            </form>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

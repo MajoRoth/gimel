@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'Accounts',
     'Orders',
     'News',
+    'Segment',
 ]
 
 MIDDLEWARE = [

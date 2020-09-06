@@ -1,0 +1,22 @@
+#Theadline{
+    color: #8911B6;
+    font-size: 40px;
+    text-shadow: 3px 3px 3px black;
+}
+
+
+
+
+@media screen and (min-width: 800px) {
+    .left-container{
+    float: left;
+    width: 70%;
+    position: sticky;
+    }
+
+    .right-container{
+        float: right;
+        width: 30%;
+        position: fixed;
+    }
+}

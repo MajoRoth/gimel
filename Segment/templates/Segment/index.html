@@ -2,8 +2,44 @@
 {% load static %}
 
 {% block head %}
+    <link rel="stylesheet" href="{% static 'css/Segment/style.css' %}">
 {% endblock %}
 
 {% block content %}
-
+    <div class="container canvas-white" id="SegmentContainer">
+    <ul class="list-group" style="margin-bottom: 5vh">
+        <li class="list-group-item" style="text-align: center">
+        <div class="row">
+            <div class="col" style="text-align: center">
+                <h1 id="Pheadline">הגזרה להיום</h1>
+            </div>
+        </div>
+        </li>
+        {% if not segment  %}
+            <li class="list-group-item" style="text-align: center">
+                <div class="row">
+                    <div class="col-6 paragraph">
+                        <h2 class="pink-text">אין גזרות להיום</h2>
+                    </div>
+                </div>
+            </li>
+        {% endif %}
+        {% for seg in segment %}
+            <li class="list-group-item" style="text-align: center">
+                <div class="row">
+                    <div class="col-6 paragraph">
+                        <h2 class="pink-text">{{ seg.get_segment_display}}</h2>
+                    </div>
+                    <div class="col-6 paragraph">
+                        {% if seg.Approved == True %}
+                            <button type="button" disabled class="btn btn-success but-100-width">מאושר</button>
+                        {% else %}
+                            <button type="button" disabled class="btn btn-danger but-100-width">לא מאושר</button>
+                        {% endif %}
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+    </div>
 {% endblock %}

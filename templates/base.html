@@ -69,6 +69,11 @@
             <a class="nav-link" href="{% url 'Orders:index' %}">הזמנות</a>
           </li>
             {% endif %}
+            {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'Segment:index' %}">הגזרה שלי</a>
+          </li>
+            {% endif %}
             {% if request.user|has_group:"Warehouse" %}
             <li class="nav-item">
             <a class="nav-link" href="{% url 'Orders:worderadmin' %}">הזמנות מחסן</a>
@@ -94,7 +99,7 @@
             <a class="nav-link" href="{% url 'Segment:admin' %}">ניהול גזרות</a>
           </li>
             {% endif %}
-            {% if request.user|has_group:"SegmentView" %}
+            {% if request.user|has_group:"SegmentView" and not request.user|has_group:"SegmentAdmin" %}
             <li class="nav-item">
             <a class="nav-link" href="{% url 'Segment:view' %}">צפייה בגזרות</a>
             </li>

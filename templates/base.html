@@ -94,6 +94,11 @@
             <a class="nav-link" href="{% url 'Segment:admin' %}">ניהול גזרות</a>
           </li>
             {% endif %}
+            {% if request.user|has_group:"SegmentView" %}
+            <li class="nav-item">
+            <a class="nav-link" href="{% url 'Segment:view' %}">צפייה בגזרות</a>
+            </li>
+            {% endif %}
 
         </ul>
       </div>

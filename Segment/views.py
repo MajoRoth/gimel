@@ -12,6 +12,15 @@ from Segment.models import Segment
 
 
 # Create your views here.
+class AllSegmentsView(PermissionRequiredMixin, TemplateView):
+    permission_required = 'Segment.view_segment'
+    template_name = 'Segment/view.html'
+
+    def get_context_data(self, **kwargs):
+        today = timezone.datetime.today()
+        context = super().get_context_data(**kwargs)
+        context['segments'] = Segment.objects.filter(date__year=today.year, date__month=today.month, date__day=today.day)
+        return context
 
 
 class CreateSegmentView(PermissionRequiredMixin, CreateView):

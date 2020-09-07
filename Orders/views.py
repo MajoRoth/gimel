@@ -1,4 +1,4 @@
-from django.views.generic import CreateView, TemplateView
+from django.views.generic import CreateView, TemplateView, UpdateView
 from Orders.models import Worder, Aorder, Torder
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -65,6 +65,7 @@ class WorderAdmin(PermissionRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['Worders'] = Worder.objects.filter(Active=True).order_by('date')
+        context['form'] = forms.WorderCommentFrom
         return context
 
 
@@ -74,7 +75,7 @@ class TorderAdmin(PermissionRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['Torders'] = Torder.objects.order_by('date')
+        context['Torders'] = Torder.objects.filter(Active=True).order_by('date')
         return context
 
 
@@ -84,8 +85,19 @@ class AorderAdmin(PermissionRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['Aorders'] = Aorder.objects.order_by('date')
+        context['Aorders'] = Aorder.objects.filter(Active=True).order_by('date')
         return context
+
+
+class CommentWorder(PermissionRequiredMixin, UpdateView):
+    permission_required = 'Orders.view_worder'
+    model = Worder
+    fields = ["comment"]
+    template_name = "Order/worder_comment.html"
+    pk_url_kwarg = 'order_pk'
+
+    def get_success_url(self):
+        return reverse("Orders:worderadmin")
 
 
 """
@@ -124,7 +136,7 @@ def deleteWorder(request, order_pk):
     order = Worder.objects.get(pk=order_pk)
     if order.collected:
         return HttpResponseRedirect(reverse('Orders:index'))
-    order.delete()
+    order.deleted()
     return HttpResponseRedirect(reverse('Orders:index'))
 
 
@@ -148,6 +160,19 @@ def deleteTorder(request, order_pk):
     order = Torder.objects.get(pk=order_pk)
     order.delete()
     return HttpResponseRedirect(reverse('Orders:index'))
+
+@permission_required('Orders.change_torder')
+def collectTorder(request, order_pk):
+    order = Torder.objects.get(pk=order_pk)
+    order.collect()
+    return HttpResponseRedirect(reverse('Orders:torderadmin'))
+
+@permission_required('Orders.change_torder')
+def returnTorder(request, order_pk):
+    order = Torder.objects.get(pk=order_pk)
+    order.returned()
+    return HttpResponseRedirect(reverse('Orders:torderadmin'))
+
 
 
 # Aorder

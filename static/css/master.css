@@ -116,6 +116,7 @@ ul > li {
 .paragraph{
     text-align: right;
     font-size: 1.2em;
+    margin-bottom: 8vh;
 }
 
 .canvas-black{
@@ -136,6 +137,7 @@ ul > li {
 
 .list-group{
     border-radius: 15px;
+    margin: -10px;
 }
 
 
@@ -183,4 +185,14 @@ position:absolute;
     width: 100%;
     margin-bottom: 10vh;
 
+}
+
+.jingel{
+    max-width: 90vw;
+}
+
+nav a:hover,
+nav a:focus{
+    color: #e016f3 !important;
+    text-shadow: 1px 1px 1px black;
 }

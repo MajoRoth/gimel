@@ -23,3 +23,16 @@ h1, h3{
     font-size: 60px;
     text-shadow: 5px 5px 3px black;
 }
+
+.comment{
+    color: #ED3CED;
+}
+
+.admin-button{
+    width: 90%;
+    margin: 5px 0;
+}
+
+.order-card{
+    margin-bottom: 10vh;
+}

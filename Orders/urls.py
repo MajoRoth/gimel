@@ -21,9 +21,13 @@ urlpatterns = [
     path('torderadmin/', views.TorderAdmin.as_view(), name='torderadmin'),
     path('torderadmin_approve/<int:order_pk>/', views.approveTorder, name='ApproveTorder'),
     path('torderadmin_disapprove/<int:order_pk>/', views.disapproveTorder, name='disApproveTorder'),
+    path('torderadmin_collect/<int:order_pk>/', views.collectTorder, name='CollectTorder'),
+    path('torderadmin_return/<int:order_pk>/', views.returnTorder, name='ReturnTorder'),
 
     path('aorderadmin/', views.AorderAdmin.as_view(), name='aorderadmin'),
     path('aorderadmin_approve/<int:order_pk>/', views.approveAorder, name='ApproveAorder'),
-    path('aorderadmin_disapprove/<int:order_pk>/', views.disapproveAorder, name='disApproveAorder')
+    path('aorderadmin_disapprove/<int:order_pk>/', views.disapproveAorder, name='disApproveAorder'),
+
+    path('worderadmin_comment/<int:order_pk>/', views.CommentWorder.as_view(), name='CommentWorder'),
 
 ]

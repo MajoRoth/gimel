@@ -22,24 +22,28 @@
       <!-- Your custom styles (optional) -->
       <link rel="stylesheet" href="{% static 'css/master.css' %}">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+      <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+      
     {% block head %}
 
     {% endblock %}
 
-    <style>
-
+    <style> /* CAN I REMOVE IT?*/
+    .navbar-collapse.collapse.in {
+      display: block!important;
+    }
     </style>
 </head>
 <body>
     <!--Navbar -->
-    <nav class="mb-1 navbar navbar-expand-lg navbar-dark bronze" style="border: #ededed 1px solid; position:fixed; width: 100%; top: 0; z-index: 13" >
+    <nav class="navbar navbar-expand-lg navbar-light dark-bronze" style="border: #ededed 1px solid; position:fixed; width: 100%; top: 0; z-index: 13" >
       <a class="navbar-brand" href="{% url 'home' %}">
         <img src="{% static 'images/logo.jpeg' %}" alt="" style="height: 60px; width: 120px">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
         aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon">Toggle</span>
+        <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
         <ul class="navbar-nav mr-auto w-100">
@@ -88,7 +92,7 @@
         </ul>
       </div>
     <div>
-        <ul class="navbar-nav ml-auto nav-flex-icons">
+        <ul class="navb ar-nav ml-auto nav-flex-icons">
         {% if user.is_authenticated %}
             <li class="nav-item">
             <nobr><a class="nav-link" href="#">שלום, {{ user.first_name }} {{ user.last_name }}</a></nobr>
@@ -141,8 +145,8 @@
     </ul>
 
 
-    </ul>
 </div>
+
 
 </body>
 </html>

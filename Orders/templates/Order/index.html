@@ -7,9 +7,9 @@
 
 {% block content %}
     <div class="container canvas-white">
-        <div class="row">
-            <div class="col-4">
-                <ul class="list-group">
+        <div class="row row-cols-1 row-cols-lg-3">
+            <div class="col">
+                <ul class="list-group" style="margin-bottom: 5vh">
                     <li class="list-group-item" style="text-align: center">
                         <h3>הזמנות מחסן</h3>
                         <form method="get" action="{% url 'Orders:CreateWorder' %}">
@@ -24,14 +24,17 @@
                         <div class="col-8" style="text-align:right">
                             <h5>{{ order.date|date:"d/m/Y" }}</h5>
                             <h6> {{ order.description }}</h6>
+                            {% if order.comment is not None %}
+                            <h6 class="comment"> {{ order.comment }}</h6>
+                            {% endif %}
                             {% if order.collected %}
                             <h6 style="color: red">ציוד לא הוחזר</h6>
-                        {% endif %}
+                            {% endif %}
                         {% if not order.collected %}
                             <a href="{% url 'Orders:DeleteWorder' order.pk %}"><i class="fas fa-trash"></i></a>
                         {% endif %}
                         </div>
-                        <div class="col-4">
+                        <div class="col-4" >
                             <button type="button" disabled class="btn btn-outline-success">מאושר</button>
                         </div>
                     </div>
@@ -40,7 +43,11 @@
                         <li class="list-group-item">
                     <div class="row">
                         <div class="col-8" style="text-align: right">
-                            <h5>{{ order.date|date:"d/m/Y"  }}</h5><h6> {{ order.description }}</h6>
+                            <h5>{{ order.date|date:"d/m/Y"  }}</h5>
+                            <h6> {{ order.description }}</h6>
+                            {% if order.comment %}
+                            <h6 class="comment"> {{ order.comment }}</h6>
+                            {% endif %}
                             <a href="{% url 'Orders:DeleteWorder' order.pk %}"><i class="fas fa-trash"></i></a>
                         </div>
                         <div class="col-4">
@@ -52,8 +59,8 @@
                 {% endfor %}
                 </ul>
             </div>
-        <div class="col-4">
-            <ul class="list-group">
+        <div class="col">
+            <ul class="list-group" style="margin-bottom: 5vh">
                     <li class="list-group-item" style="text-align: center">
                         <h3>הזמנות תחזוקה</h3>
                         <form method="get" action="{% url 'Orders:CreateTorder' %}">
@@ -67,6 +74,9 @@
                     <div class="row">
                         <div class="col-8">
                             <h5>{{ order.date|date:"d/m/Y"  }}</h5><h6> {{ order.description }}</h6>
+                            {% if order.collected %}
+                            <h6 style="color: red">ציוד לא הוחזר</h6>
+                            {% endif %}
                         </div>
                         <div class="col-4">
                             <button type="button" disabled class="btn btn-outline-success">מאושר</button>
@@ -88,8 +98,8 @@
                 {% endfor %}
                 </ul>
         </div>
-        <div class="col-4">
-            <ul class="list-group">
+        <div class="col">
+            <ul class="list-group" style="margin-bottom: 5vh">
                     <li class="list-group-item" style="text-align: center">
                         <h3>הזמנות שטח</h3>
                         <form method="get" action="{% url 'Orders:CreateAorder' %}">

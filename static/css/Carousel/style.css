@@ -302,6 +302,7 @@ iframe {
   background: transparent;
   position: relative;
   z-index: 1;
+  margin-bottom: 5vh;
 }
 
 .contact100-map {
@@ -353,7 +354,6 @@ iframe {
   text-align: left;
   padding-bottom: 64px;
     text-align: right;
-
 }
 
 

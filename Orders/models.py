@@ -11,10 +11,13 @@ class Worder(models.Model):
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now=True)
     description = models.TextField()
+    comment = models.TextField(null=True, blank=True)
     date = models.DateField(default=timezone.now())
     Approved = models.BooleanField(default=False)
     collected = models.BooleanField(default=False)
     Active = models.BooleanField(default=True)  # instead of deleting - set false
+    Deleted = models.BooleanField(default=False)
+    deleted_date = models.DateTimeField(null=True, blank=True)  # instead of deleting - set false
 
     def approve(self):
         self.Approved = True
@@ -36,9 +39,18 @@ class Worder(models.Model):
         self.Active = False
         self.save()
 
+    def deleted(self):
+        self.Active = False
+        self.Deleted = True
+        self.deleted_date = timezone.now()
+        self.save()
+
     def get_absolute_url(self):
         # We will change to the list view once created
         return reverse('Orders:index')
+
+    def __str__(self):
+        return "{} {} {}".format(self.date, self.user.first_name, self.user.last_name)
 
 
 class Torder(models.Model):
@@ -49,6 +61,7 @@ class Torder(models.Model):
     date = models.DateField(default=timezone.now())
     Approved = models.BooleanField(default=False)
     Active = models.BooleanField(default=True) # instead of deleting - set false
+    collected = models.BooleanField(default=False)
 
     def approve(self):
         self.Approved = True
@@ -58,9 +71,22 @@ class Torder(models.Model):
         self.Approved = False
         self.save()
 
+    def collect(self):
+        self.collected = True
+        self.save()
+
+    def returned(self):
+        self.collected = False
+        self.Approved = False
+        self.Active = False
+        self.save()
+
     def get_absolute_url(self):
         # We will change to the list view once created
         return reverse('Orders:index')
+
+    def __str__(self):
+        return "{} {} {}".format(self.date, self.user.first_name, self.user.last_name)
 
 
 class Aorder(models.Model):
@@ -94,6 +120,9 @@ class Aorder(models.Model):
     def get_absolute_url(self):
         # We will change to the list view once created
         return reverse('Orders:index')
+
+    def __str__(self):
+        return "{} {} {}".format(self.date, self.user.first_name, self.user.last_name)
 
 
 

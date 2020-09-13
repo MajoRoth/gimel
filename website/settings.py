@@ -23,10 +23,11 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = 'nt4fi$rgo3o1o#fd&#b_=u$woca%7%v!)mnbx7-3e#ktg&=u4q'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     '20system21.pythonanywhere.com',
+    'www.shevetgimel.com'
     ]
 
 
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     'Accounts',
     'Orders',
     'News',
+    'Segment',
 ]
 
 MIDDLEWARE = [

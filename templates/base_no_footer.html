@@ -69,11 +69,6 @@
             <a class="nav-link" href="{% url 'Orders:index' %}">הזמנות</a>
           </li>
             {% endif %}
-            {% if user.is_authenticated %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'Segment:index' %}">הגזרה שלי</a>
-          </li>
-            {% endif %}
             {% if request.user|has_group:"Warehouse" %}
             <li class="nav-item">
             <a class="nav-link" href="{% url 'Orders:worderadmin' %}">הזמנות מחסן</a>
@@ -98,11 +93,6 @@
             <li class="nav-item">
             <a class="nav-link" href="{% url 'Segment:admin' %}">ניהול גזרות</a>
           </li>
-            {% endif %}
-            {% if request.user|has_group:"SegmentView" and not request.user|has_group:"SegmentAdmin" %}
-            <li class="nav-item">
-            <a class="nav-link" href="{% url 'Segment:view' %}">צפייה בגזרות</a>
-            </li>
             {% endif %}
 
         </ul>
@@ -142,27 +132,7 @@
 
     <!-- SPACE -->
     <div style="height: 15vh; width: 100%"></div>
-<footer>
-<div class="botnav">
-    <ul style="padding-top: 3vh">
 
-        <li><a href="https://www.facebook.com/profile.php?id=100004309170611">
-            <img src="{% static 'images/facebook.png' %}" class="navicon">
-        </a></li>
-        <li><a href="https://www.instagram.com/shevetgimel/">
-            <img src="{% static 'images/instegram.png' %}" class="navicon">
-        </a></li>
-        <li><a href="https://israelscoutsassociation.accounts.ondemand.com">
-            <img src="{% static 'images/scouts.jpeg' %}" class="navicon">
-        </a></li>
-        <li><a href="https://hamasa.zofim.org.il/login">
-            <img src="{% static 'images/journey.jpeg' %}" class="navicon">
-        </a></li>
-    </ul>
-
-
-</div>
-</footer>
 
 </body>
 </html>

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% load bootstrap3 %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/Segment/style.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+            <ul class="list-group" style="margin-bottom: 5vh">
+                    <li class="list-group-item" style="text-align: center">
+                        <h3>גזרות להיום</h3>
+                    </li>
+                {% for segment in segments %}
+                    {% if segment.Approved != True %}
+                        <li class="list-group-item" style="text-align: right">
+                        <h2 style="color: #ff0000">{{ segment.user.get_full_name }}: {{ segment.get_segment_display }}</h2>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+                {% for segment in segments %}
+                    {% if segment.Approved == True %}
+                        <li class="list-group-item" style="text-align: right">
+                        <h2 style="color: green">{{ segment.user.get_full_name }}: {{ segment.get_segment_display }}</h2>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

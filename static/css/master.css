@@ -1,4 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald:400,700');
+@import url("https://fonts.googleapis.com/css2?family=Assistant&display=swap");
+
+
+:root{
+    font-family: 'Assistant', sans-serif;
+}
 
 html {
     margin: 0;
@@ -20,6 +26,11 @@ body{
     overflow-x: hidden;
 
 }
+
+footer {
+    color: #f91da3 !important;
+}
+
 
 .navbar {
     background-color: #ffffff;
@@ -196,3 +207,4 @@ nav a:focus{
     color: #e016f3 !important;
     text-shadow: 1px 1px 1px black;
 }
+

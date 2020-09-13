@@ -63,7 +63,9 @@
                     <div class="row">
                         <div class="col-8">
                             <h5>{{ order.user.first_name }} {{ order.user.last_name }}</h5><h6> {{ order.date|date:"d/m/Y" }}</h6><h6> {{ order.description }}</h6>
+                            {% if order.comment %}
                             <h6 class="comment"> {{ order.comment }}</h6>
+                                {% endif %}
                         </div>
                         <div class="col-4" style="text-align: center">
                             <form action="{% url 'Orders:disApproveWorder' order_pk=order.pk %}", method="POST">

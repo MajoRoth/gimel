@@ -9,7 +9,7 @@
     <div class="container canvas-white">
         <div class="row row-cols-1 row-cols-lg-3">
             <div class="col">
-                <ul class="list-group" style="margin-bottom: 5vh">
+                <ul class="list-group" id="ul-seg" style="margin-bottom: 5vh;">
                     <li class="list-group-item" style="text-align: center">
                         <h3>הזמנות מחסן</h3>
                         <form method="get" action="{% url 'Orders:CreateWorder' %}">
@@ -60,7 +60,7 @@
                 </ul>
             </div>
         <div class="col">
-            <ul class="list-group" style="margin-bottom: 5vh">
+            <ul class="list-group" style="margin-bottom: 5vh;">
                     <li class="list-group-item" style="text-align: center">
                         <h3>הזמנות תחזוקה</h3>
                         <form method="get" action="{% url 'Orders:CreateTorder' %}">

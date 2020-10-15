@@ -25,7 +25,9 @@ def home(request):
                       cd.get('phone'),
                       cd.get('email'),
                       cd.get('text'))
-            return render(request, 'index.html', {'form': forms.ContactForm()})
+
+        return HttpResponseRedirect(reverse('home'))
+        #return render(request, 'index.html', {'form': forms.ContactForm()})
 
 
 

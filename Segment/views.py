@@ -48,7 +48,7 @@ class CreateSegmentView(PermissionRequiredMixin, CreateView):
         context = super().get_context_data(**kwargs)
         context['segments'] = Segment.objects.filter(date__year=today.year, date__month=today.month, date__day=today.day).filter(Active=True)
         #  ---LISTS---
-        all_users = User.objects.filter(is_superuser=False)
+        all_users = User.objects.filter(is_staff=False)
         all_users = set(list(all_users))
         users_segments = set()
         for seg in context['segments']:

@@ -1,4 +1,4 @@
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, CreateView
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from website import forms
@@ -10,6 +10,7 @@ class MoralsPage(TemplateView):
 
 class JingelsPage(TemplateView):
     template_name = "jingels.html"
+
 
 
 def home(request):
@@ -28,6 +29,7 @@ def home(request):
 
         return HttpResponseRedirect(reverse('home'))
         #return render(request, 'index.html', {'form': forms.ContactForm()})
+
 
 
 

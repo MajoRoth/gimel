@@ -50,7 +50,7 @@ def send_notification(name, receiver_email = "gimel1987dev@gmail.com"):
     msg['From'] = sender_email
     msg['To'] = receiver_email
 
-    text = "מחכה הזמנה חדשה מצוות {} . לפרטים נוספים כנסו לאתר".format(name)
+    text = "מחכה הזמנה חדשה מ- {} . לפרטים נוספים כנסו לאתר".format(name)
 
     html = """\
     <html>

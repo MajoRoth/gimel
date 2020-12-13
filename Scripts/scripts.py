@@ -39,7 +39,7 @@ def send_mail(name, phone, email, message, ):
         server.sendmail(sender_email, receiver_email, msg.as_string())
 
 
-def send_notification(name, date, receiver_email = "gimel1987dev@gmail.com"):
+def send_notification(name, receiver_email = "gimel1987dev@gmail.com"):
     port = 465  # For SSL
     password = "OneLifeOneLove"
     sender_email = "gimel1987dev@gmail.com"
@@ -50,7 +50,7 @@ def send_notification(name, date, receiver_email = "gimel1987dev@gmail.com"):
     msg['From'] = sender_email
     msg['To'] = receiver_email
 
-    text = "מחכה הזמנה חדשה מצוות {} לתאריך {}. לפרטים נוספים כנסו לאתר".format(name, date)
+    text = "מחכה הזמנה חדשה מצוות {} . לפרטים נוספים כנסו לאתר".format(name)
 
     html = """\
     <html>

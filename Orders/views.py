@@ -6,6 +6,7 @@ from Orders import forms
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.contrib.auth.decorators import permission_required, login_required
 from django.utils import timezone
+from Scripts.scripts import send_notification
 
 
 # Create your views here.
@@ -31,6 +32,7 @@ class WorderCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+        send_notification(self.request.user.first_name + " " + self.request.user.last_name, ["20wgh21@gmail.com", "Zivnir6@gmail.com"])
         return super().form_valid(form)
 
 

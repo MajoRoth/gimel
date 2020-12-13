@@ -32,7 +32,7 @@ class WorderCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        send_notification(self.request.user.first_name + " " + self.request.user.last_name, ["20wgh21@gmail.com", "Zivnir6@gmail.com"])
+        send_notification(self.request.user.first_name + " " + self.request.user.last_name, "20wgh21@gmail.com")
         return super().form_valid(form)
 
 

@@ -2,7 +2,7 @@ import smtplib, ssl
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-def send_mail(name, phone, email, message):
+def send_mail(name, phone, email, message, ):
     port = 465  # For SSL
     password = "OneLifeOneLove"
     sender_email = "gimel1987dev@gmail.com"
@@ -37,3 +37,45 @@ def send_mail(name, phone, email, message):
         server.login(sender_email, password)
         # TODO: Send email here
         server.sendmail(sender_email, receiver_email, msg.as_string())
+
+
+def send_notification(name, date, receiver_email = "gimel1987dev@gmail.com"):
+    port = 465  # For SSL
+    password = "OneLifeOneLove"
+    sender_email = "gimel1987dev@gmail.com"
+
+
+    msg = MIMEMultipart('alternative')
+    msg['Subject'] = name
+    msg['From'] = sender_email
+    msg['To'] = receiver_email
+
+    text = "מחכה הזמנה חדשה מצוות {} לתאריך {}. לפרטים נוספים כנסו לאתר".format(name, date)
+
+    html = """\
+    <html>
+      <head></head>
+      <body>
+        <p>
+        {}
+        </p>
+        <p>
+        <a href="https://www.shevetgimel.com">הקלק לכניסה לאתר.</a>
+        </p>
+      </body>
+    </html>
+    """.format(text)
+
+    # Record the MIME types of both parts - text/plain and text/html.
+    part1 = MIMEText(text, 'plain')
+    part2 = MIMEText(html, 'html')
+
+    msg.attach(part1)
+    msg.attach(part2)
+
+    context = ssl.create_default_context()
+    with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
+        server.login(sender_email, password)
+        # TODO: Send email here
+        server.sendmail(sender_email, receiver_email, msg.as_string())
+

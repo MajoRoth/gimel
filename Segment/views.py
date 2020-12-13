@@ -38,7 +38,7 @@ class AllSegmentsView(PermissionRequiredMixin, TemplateView):
 
 
 class CreateSegmentView(PermissionRequiredMixin, CreateView):
-    permission_required = 'Segment.create_segment'
+    permission_required = 'Segment.add_segment'
     form_class = forms.SegmentForm
     model = Segment
     template_name = 'Segment/admin.html'
@@ -64,19 +64,19 @@ class CreateSegmentView(PermissionRequiredMixin, CreateView):
         return context
 
 
-@permission_required('Segment.change_aorder')
+@permission_required('Segment.add_segment')
 def approveSegment(request, seg_pk):
     segment = Segment.objects.get(pk=seg_pk)
     segment.approve()
     return HttpResponseRedirect(reverse('Segment:admin'))
 
-@permission_required('Segment.change_aorder')
+@permission_required('Segment.add_segment')
 def disapproveSegment(request, seg_pk):
     segment = Segment.objects.get(pk=seg_pk)
     segment.disapprove()
     return HttpResponseRedirect(reverse('Segment:admin'))
 
-@permission_required('Segment.change_aorder')
+@permission_required('Segment.add_segment')
 def disactiveSegment(request, seg_pk):
     segment = Segment.objects.get(pk=seg_pk)
     segment.disactive()

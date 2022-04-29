@@ -1,2 +1,3 @@
 # gimel
-A website to my "scouts tribe" contains a blog, photos and advanced management system that tracks inventory and manages requests.
+A website built with DJANGO to my "scouts tribe". <br>
+Contains a blog, photos and advanced management system that tracks inventory and manages requests.
